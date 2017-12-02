@@ -8,7 +8,7 @@ install:
 	stack install pandoc
 
 git:
-	git submodule init && git submodule checkout
+	git submodule init && git submodule update
 
 pandoc: git
 	cat 01_eth.md 02_ps.md 03_web3.md > index.md
