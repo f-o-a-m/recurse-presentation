@@ -64,24 +64,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     <div class="slides">
 
 
-<section class="slide level1">
-
-<p>build-lists: true autoscale: true</p>
-</section>
 <section id="introduction-to-purescript-web3" class="slide level1">
 <h1>Introduction to purescript-web3</h1>
 <h3 id="martin-allen-foam">Martin Allen, FOAM</h3>
 </section>
-<section id="toc" class="slide level1">
-<h1>TOC</h1>
+<section id="plan-of-the-talk" class="slide level1">
+<h1>plan of the talk</h1>
 <ul>
 <li>ethereum</li>
 <li>purescript</li>
 <li>purescript-web3</li>
 </ul>
 </section>
-<section id="ethereum" class="slide level1">
-<h1>ethereum</h1>
+<section class="slide level1">
+
+<h2 id="ethereum">ethereum</h2>
 <ul>
 <li>second most popupular blockchain and cryptocurrency</li>
 <li>turing-complete<a href="#/fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> statemachine (EVM)</li>
@@ -91,26 +88,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <section class="slide level1">
 
 <figure>
-<img src="images/txs.png" alt="100%" /><figcaption>100%</figcaption>
+<img src="images/txs.png" alt="Ethereum transactions over time" /><figcaption>Ethereum transactions over time</figcaption>
 </figure>
 <p>source: etherscan.io as of 12/2/2017</p>
 </section>
 <section class="slide level1">
 
 <figure>
-<img src="images/addresses.png" alt="100%" /><figcaption>100%</figcaption>
+<img src="images/addresses.png" alt="Unique transactions over time" /><figcaption>Unique transactions over time</figcaption>
 </figure>
 <p>source: etherscan.io as of 12/2/2017</p>
 </section>
 <section class="slide level1">
 
 <figure>
-<img src="images/marketcap.png" alt="100%" /><figcaption>100%</figcaption>
+<img src="images/marketcap.png" alt="Ethereum market cap over time" /><figcaption>Ethereum market cap over time</figcaption>
 </figure>
 <p>source: etherscan.io as of 12/2/2017</p>
 </section>
-<section id="solidity" class="slide level1">
-<h1>solidity</h1>
+<section class="slide level1">
+
+<h2 id="solidity">solidity</h2>
 <ul>
 <li>javascript like syntax</li>
 <li>special blockchain, crypto and signature-recovery primitives</li>
@@ -121,22 +119,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <section class="slide level1">
 
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">contract GreedyStorage is owned <span class="op">{</span>
-
   uint <span class="kw">public</span> m<span class="op">;</span> <span class="co">// automatically generate getM()</span>
-  
   <span class="kw">function</span> <span class="at">increase</span> (uint n) onlyOwner <span class="at">returns</span> (uint) 
   <span class="op">{</span>
      m <span class="op">=</span> m <span class="op">+</span> n<span class="op">;</span>
      <span class="cf">return</span> m<span class="op">;</span>
   <span class="op">}</span>
-  
   <span class="kw">function</span> <span class="at">override</span> (uint n) payable 
   <span class="op">{</span>
     <span class="at">require</span>(<span class="va">msg</span>.<span class="at">value</span> <span class="op">&gt;</span> <span class="dv">100000</span>)<span class="op">;</span>  <span class="co">// this is the price</span>
     m <span class="op">=</span> n<span class="op">;</span>
     <span class="at">log0</span>(<span class="at">bytes32</span>(<span class="va">msg</span>.<span class="at">sender</span>))<span class="op">;</span>
   <span class="op">}</span>
-  
 <span class="op">}</span></code></pre></div>
 <p><a href="https://ethereum.github.io/browser-solidity/#version=soljson-v0.4.19+commit.c4cbbb05.js&amp;optimize=undefined&amp;gist=a90b20b6df66c98f7af2f912952d2b7d">edit on remix</a></p>
 </section>
@@ -154,18 +148,20 @@ abi <span class="fu">=</span> take <span class="dv">8</span> <span class="fu">$<
     <span class="dt">&quot;94d9e61c&quot;</span><span class="fu">:</span> <span class="st">&quot;override(uint256)&quot;</span>
 <span class="fu">}</span></code></pre></div>
 </section>
-<section id="typesafety-on-chain" class="slide level1">
-<h1>typesafety (on-chain)</h1>
+<section class="slide level1">
+
+<h2 id="typesafety-on-chain">typesafety (on-chain)</h2>
 <ul>
 <li>work underway for strongly typed languages targeting EVM</li>
 <li>typesafe EVM language wouldn't necessarily have prevented infamous bugs. We'd need session types or similar.</li>
 <li>fundamental problem is <code>call()</code>-out from turingcomplete executable to turingcomplete executable. Types are not preserved on EVM.</li>
 </ul>
 </section>
-<section id="typesafety-off-chain" class="slide level1">
-<h1>typesafety (off-chain)</h1>
+<section class="slide level1">
+
+<h2 id="typesafety-off-chain">typesafety (off-chain)</h2>
+<p>Prevent catastrophes for</p>
 <ul>
-<li>prevent catastrophes for</li>
 <li>encoding errors</li>
 </ul>
 </section>
@@ -182,10 +178,11 @@ abi <span class="fu">=</span> take <span class="dv">8</span> <span class="fu">$<
 <img src="images/rex.png" alt="100%" /><figcaption>100%</figcaption>
 </figure>
 </section>
-<section id="typesafety-off-chain-1" class="slide level1">
-<h1>typesafety (off-chain)</h1>
+<section class="slide level1">
+
+<h2 id="typesafety-off-chain-1">typesafety (off-chain)</h2>
+<p>Prevent catastrophes for</p>
 <ul>
-<li>prevent catastrophes for</li>
 <li>encoding errors</li>
 <li>migrations</li>
 </ul>
@@ -199,24 +196,26 @@ abi <span class="fu">=</span> take <span class="dv">8</span> <span class="fu">$<
   <span class="op">}</span>
 <span class="op">}</span></code></pre></div>
 </section>
-<section id="typesafety-off-chain-2" class="slide level1">
-<h1>typesafety (off-chain)</h1>
+<section class="slide level1">
+
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">contract A <span class="op">{</span>
+  int n<span class="op">;</span>
+  <span class="kw">function</span> <span class="at">A</span> (int _arg) <span class="op">{</span>
+    n <span class="op">=</span> _arg<span class="op">;</span>
+  <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+</section>
+<section class="slide level1">
+
+<h2 id="typesafety-off-chain-2">typesafety (off-chain)</h2>
+<p>Convenience</p>
 <ul>
-<li>prevent catastrophes for</li>
-<li>encoding errors</li>
-<li>migrations</li>
-<li>convenience</li>
-<li>CD</li>
+<li>CD/CI</li>
 <li>compile time errors</li>
 </ul>
 </section>
-<section id="toc-1" class="slide level1">
-<h1>TOC</h1>
-<ul>
-<li>ethereum</li>
-<li>purescript</li>
-<li>purescript-web3</li>
-</ul>
+<section id="purescript" class="slide level1">
+<h1>purescript</h1>
 </section>
 <section class="slide level1">
 
@@ -248,34 +247,20 @@ abi <span class="fu">=</span> take <span class="dv">8</span> <span class="fu">$<
 <li>easy FFI</li>
 </ul>
 </section>
-<section id="comparison-with" class="slide level1">
-<h1>Comparison with</h1>
+<section class="slide level1">
+
+<h2 id="comparison-with">comparison with</h2>
 <ul>
 <li>elm</li>
 <li>ghcjs</li>
 </ul>
 </section>
-<section class="slide level1">
-
-<p>build-lists: true autoscale: true</p>
-</section>
-<section id="introduction-to-purescript-web3-1" class="slide level1">
-<h1>Introduction to purescript-web3</h1>
-<h3 id="martin-allen-foam-1">Martin Allen, FOAM</h3>
-</section>
-<section id="toc-2" class="slide level1">
-<h1>TOC</h1>
-<ul>
-<li>ethereum</li>
-<li>purescript</li>
-<li>purescript-web3</li>
-</ul>
-</section>
 <section id="purescript-web3" class="slide level1">
 <h1>purescript-web3</h1>
 </section>
-<section id="library-layout" class="slide level1">
-<h1>Library Layout</h1>
+<section class="slide level1">
+
+<h2 id="library-layout">Library Layout</h2>
 <ol type="1">
 <li>Low level serialization and RPC layer</li>
 </ol>
@@ -288,13 +273,16 @@ abi <span class="fu">=</span> take <span class="dv">8</span> <span class="fu">$<
 <li>User Interface and Generator Tool</li>
 </ol>
 <ul>
+<li>purescript-web3 generator</li>
 <li><code>Contract</code> module</li>
 <li>Methods and Events</li>
-<li>purescript-web3 generator</li>
 </ul>
 </section>
 <section id="solidity-types" class="slide level1">
 <h1>Solidity Types</h1>
+</section>
+<section class="slide level1">
+
 <h2 id="sized-types">Sized Types</h2>
 <ul>
 <li>Purescript does not as of yet have type level naturals</li>
@@ -348,13 +336,19 @@ vCons a (<span class="dt">Vector</span> as) <span class="fu">=</span> <span clas
 
 <h3 id="tuples">Tuples</h3>
 <ul>
-<li>The EVM is a stack based virtual machine with a maximum depth of 16. Not very impressive, but limits the possible tuple sizes. ```haskell</li>
+<li>The EVM is a stack based virtual machine with a maximum depth of 16. Not very impressive, but limits the possible tuple sizes.</li>
 </ul>
-<p>data Tuple0 = Tuple0</p>
-<p>newtype Tuple1 a = Tuple1 a</p>
-<p>...</p>
-<p>data Tuple16 a b c d e f g h i j k l m n o p = Tuple16 a b c d e f g h i j k l m n o p</p>
-<p>``<code>- First iteration of</code>purescript-web3` didn't handle these well.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tuple0</span> <span class="fu">=</span> <span class="dt">Tuple0</span>
+
+<span class="kw">newtype</span> <span class="dt">Tuple1</span> a <span class="fu">=</span> <span class="dt">Tuple1</span> a
+
+<span class="fu">...</span>
+
+<span class="kw">data</span> <span class="dt">Tuple16</span> a b c d e f g h i j k l m n o p <span class="fu">=</span> 
+  <span class="dt">Tuple16</span> a b c d e f g h i j k l m n o p</code></pre></div>
+<ul>
+<li>First iteration of <code>purescript-web3</code> didn't handle these well.</li>
+</ul>
 </section>
 <section class="slide level1">
 
@@ -374,9 +368,9 @@ vCons a (<span class="dt">Vector</span> as) <span class="fu">=</span> <span clas
   fromDataParser <span class="fu">=</span> <span class="kw">do</span>
     a <span class="ot">&lt;-</span> uInt256HexParser
     maybe (fail <span class="fu">$</span> msg a) pure <span class="fu">&lt;&lt;&lt;</span> uIntNFromBigNumber <span class="fu">$</span> a
-    <span class="kw">where</span>
-      msg n <span class="fu">=</span> <span class="kw">let</span> size <span class="fu">=</span> sizeVal (<span class="dt">Proxy</span><span class="ot"> ::</span> <span class="dt">Proxy</span> n)
-              <span class="kw">in</span> <span class="st">&quot;Couldn&#39;t parse as uint&quot;</span> <span class="fu">&lt;&gt;</span> show size <span class="fu">&lt;&gt;</span> <span class="st">&quot; : &quot;</span> <span class="fu">&lt;&gt;</span> show n</code></pre></div>
+  <span class="kw">where</span>
+    msg n <span class="fu">=</span> <span class="kw">let</span> size <span class="fu">=</span> sizeVal (<span class="dt">Proxy</span><span class="ot"> ::</span> <span class="dt">Proxy</span> n)
+            <span class="kw">in</span> <span class="st">&quot;Couldn&#39;t parse as uint&quot;</span> <span class="fu">&lt;&gt;</span> show size <span class="fu">&lt;&gt;</span> <span class="st">&quot;:&quot;</span> <span class="fu">&lt;&gt;</span> show n</code></pre></div>
 </section>
 <section class="slide level1">
 
@@ -386,6 +380,28 @@ vCons a (<span class="dt">Vector</span> as) <span class="fu">=</span> <span clas
 <li>Events are emitted as tuples, though not as straight forward to handle</li>
 <li>Encoding and Decoding implemented &quot;generically&quot;</li>
 </ul>
+</section>
+<section class="slide level1">
+
+<h2 id="generics-primer-advanced">Generics Primer (Advanced)</h2>
+<ul>
+<li>All &quot;basic&quot; purescript types (i.e. of kind <code>Type</code>) admit a generic decomposition</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Argument</span> a <span class="fu">=</span> <span class="dt">Argument</span> a
+<span class="kw">data</span> <span class="dt">Product</span> a b <span class="fu">=</span> <span class="dt">Product</span> a b
+<span class="kw">data</span> <span class="dt">Constructor</span> (<span class="ot">s ::</span> <span class="dt">Symbol</span>) a <span class="fu">=</span> <span class="dt">Constructor</span> a
+
+from (<span class="dt">Tuple3</span> <span class="dt">Bool</span> <span class="dt">String</span> (<span class="dt">UInt</span> <span class="dt">D8</span>)) <span class="ot">::</span>
+  <span class="dt">Constructor</span> <span class="st">&quot;Tuple3&quot;</span> (<span class="dt">Product</span> (<span class="dt">Argument</span> <span class="dt">Bool</span>) (<span class="dt">Product</span> (<span class="dt">Argument</span> <span class="dt">String</span>) (<span class="dt">Argument</span> <span class="dt">UInt</span> <span class="dt">D8</span>))) </code></pre></div>
+<ul>
+<li>Compiler implements generic decompositions for us, so we can use them for free.</li>
+<li>We can inductively build up generic types to have a certain property, such as <code>ABIEncode</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span><span class="ot"> genericEncodeBase ::</span> <span class="dt">ABIEncode</span> a <span class="ot">=&gt;</span> <span class="dt">GenericABIEncode</span> (<span class="dt">Argument</span> a)
+<span class="kw">instance</span><span class="ot"> genericEncodeInductive ::</span> (<span class="dt">ABIEncode</span> a, <span class="dt">GenericABIEncode</span> b) <span class="ot">=&gt;</span> <span class="dt">GenericABIEncode</span> (<span class="dt">Product</span> (<span class="dt">Argument</span> a) b)</code></pre></div>
+</section>
+<section class="slide level1">
+
 <h2 id="generics">Generics</h2>
 <ul>
 <li>enables extremely local reasoning, building up more complicated expressions from smaller ones whose correctness is easier to prove.</li>
@@ -406,24 +422,17 @@ genericABIEncode <span class="fu">=</span> genericToDataBuilder <span class="fu"
 <li>The Web3 API is a set of RPC methods that the ethereum client knows about</li>
 <li>There are a lot, the type signatures can serve as a sort of documentation</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eth_sendTransaction ::</span> 
-  forall p e <span class="fu">.</span> 
-     <span class="dt">IsAsyncProvider</span> p 
-  <span class="ot">=&gt;</span> <span class="dt">TransactionOptions</span> 
-  <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eth_sendTransaction ::</span> forall p e <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
+                    <span class="ot">=&gt;</span> <span class="dt">TransactionOptions</span> 
+                    <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
 
-<span class="ot">eth_newFilter ::</span>
-  forall p e <span class="fu">.</span> 
-     <span class="dt">IsAsyncProvider</span> p 
-  <span class="ot">=&gt;</span> <span class="dt">Filter</span> 
-  <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">FilterId</span>
+<span class="ot">eth_newFilter ::</span> forall p e <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
+              <span class="ot">=&gt;</span> <span class="dt">Filter</span> 
+              <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">FilterId</span>
 
-
-<span class="ot">eth_getFilterChanges ::</span> 
-  forall p e <span class="fu">.</span> 
-     <span class="dt">IsAsyncProvider</span> p 
-  <span class="ot">=&gt;</span> <span class="dt">FilterId</span> 
-  <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e (<span class="dt">Array</span> <span class="dt">Change</span>)
+<span class="ot">eth_getFilterChanges ::</span> forall p e <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
+                     <span class="ot">=&gt;</span> <span class="dt">FilterId</span> 
+                     <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e (<span class="dt">Array</span> <span class="dt">Change</span>)
 
 <span class="fu">...</span></code></pre></div>
 </section>
@@ -431,889 +440,144 @@ genericABIEncode <span class="fu">=</span> genericToDataBuilder <span class="fu"
 
 <h2 id="web3-api-1">Web3 API</h2>
 <ul>
-<li>Implementation of the client portion heavily inspired by the hs-web3 implementation.</li>
+<li>Implementation of the client portion heavily inspired by the <code>hs-web3</code> implementation.</li>
 <li><p>How easy is it to add new endpoints as they are released?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eth_sendTransaction ::</span> forall p e <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p <span class="ot">=&gt;</span> <span class="dt">TransactionOptions</span> <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
-eth_sendTransaction opts <span class="fu">=</span> unsafeCoerceWeb3 <span class="fu">$</span> remote <span class="st">&quot;eth_sendTransaction&quot;</span><span class="ot"> opts ::</span> <span class="dt">Web3</span> p () <span class="dt">HexString</span></code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eth_sendTransaction ::</span> forall p e
+                 <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p
+                <span class="ot">=&gt;</span> <span class="dt">TransactionOptions</span>
+                <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
+eth_sendTransaction opts <span class="fu">=</span>
+  unsafeCoerceWeb3 <span class="fu">$</span> remote <span class="st">&quot;eth_sendTransaction&quot;</span><span class="ot"> opts ::</span> <span class="dt">Web3</span> p () <span class="dt">HexString</span></code></pre></div></li>
 <li><p>Pretty easy!</p></li>
 </ul>
-<h2 id="generator----simple-storage">Generator -- Simple Storage</h2>
+</section>
+<section class="slide level1">
+
+<h2 id="user-interface">User Interface</h2>
+<p>You will be able to use <code>purescript-web3</code> without knowing how it works. This means:</p>
+<ol type="1">
+<li>Calling contract methods, listening for events, querying blockchain metadata, full web3 api implementation.</li>
+<li>Interacting with metamask.</li>
+<li>Easily generate a small client library for every contract.</li>
+</ol>
+</section>
+<section class="slide level1">
+
+<h2 id="generator---simple-storage">Generator - Simple Storage</h2>
 <p>Simple Storage allows us to change a <code>uint256</code>, query that state, and listen for updates to that state.</p>
-<pre class="solidity"><code>contract SimpleStorage {
-    uint public count;
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">contract SimpleStorage <span class="op">{</span>
+    uint <span class="kw">public</span> count<span class="op">;</span>
 
-    event CountSet(uint _count);
+    event <span class="at">CountSet</span>(uint _count)<span class="op">;</span>
 
-    function setCount(uint _count) {
-        count = _count;
-        CountSet(_count);
-    }
-}
-</code></pre>
-<h2 id="benefits-of-the-generator-approach">Benefits of the generator approach</h2>
-<ol type="1">
-<li>You don't want to access the raw encoders/decoders manually when templating your transactions, laborious and potentially error prone.</li>
-<li>The generator is meant to be run as an npm step, meaning that if you change your contracts</li>
-</ol>
-</section>
-<section id="function-application" class="slide level1">
-<h1>Function Application</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&gt;</span> john <span class="dt">Eggs</span>
-
-<span class="dt">Unhappy</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">&gt;</span> john <span class="dt">Coffee</span>
-
-<span class="dt">Happy</span></code></pre></div>
-</section>
-<section id="exercise-set-1" class="slide level1">
-<h1>Exercise Set 1</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">CharacterStatus</span> <span class="fu">=</span> <span class="dt">Content</span> <span class="fu">|</span> <span class="dt">Hungry</span> <span class="fu">|</span> <span class="dt">Tired</span>
-
-<span class="ot">describeCharacterStatus ::</span> <span class="dt">CharacterStatus</span> <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
-<ol type="1">
-<li>Create a set called <code>CharacterStatus</code>, which represents the different states of the player.</li>
-<li>Create a function called <code>describeCharacterStatus</code> which describes the state of the player.</li>
-</ol>
-</section>
-<section id="types" class="slide level1">
-<h1>Types</h1>
-<h3 id="sets-of-values.">Sets of values.</h3>
-</section>
-<section id="literal-types" class="slide level1">
-<h1>Literal Types</h1>
-<ul>
-<li><code>String</code> : The set that contains all strings; <code>&quot;foo&quot;</code> is an element of this set.</li>
-<li><code>Number</code> : The set that contains all numbers;<a href="#/fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> <code>5.5</code> is an element of this set.</li>
-<li><code>Int</code> : The set that contains all integers; <code>3</code> is an element of this set.</li>
-<li><code>Char</code> : The set that contains all characters; <code>'J'</code> is an element of this set.</li>
-<li><code>Boolean</code> : The set that contains the values <code>true</code> and <code>false</code>.</li>
-</ul>
-<p>Plus records <code>{foo: &quot;bar&quot;}</code> and arrays <code>[1, 2, 3]</code>!</p>
-</section>
-<section id="product-types1" class="slide level1">
-<h1>Product Types<a href="#/fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Loc</span> <span class="fu">=</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="dt">Int</span></code></pre></div>
-</section>
-<section id="product-types" class="slide level1">
-<h1>Product Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">data</span> <span class="dt">Loc</span> <span class="fu">=</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="dt">Int</span>
-<span class="co">--      |</span>
-<span class="co">--      |</span>
-<span class="co">--      |</span>
-<span class="co">--  The name of</span>
-<span class="co">--   the type.   </span></code></pre></div>
-</section>
-<section id="product-types-1" class="slide level1">
-<h1>Product Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">data</span> <span class="dt">Loc</span> <span class="fu">=</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="dt">Int</span>
-<span class="co">--         |</span>
-<span class="co">--         |</span>
-<span class="co">--         |</span>
-<span class="co">-- Nonsense, please ignore!</span></code></pre></div>
-</section>
-<section id="product-types-2" class="slide level1">
-<h1>Product Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">data</span> <span class="dt">Loc</span> <span class="fu">=</span> <span class="dt">Loc</span> <span class="dt">Int</span> int
-<span class="co">--            |</span>
-<span class="co">--            |</span>
-<span class="co">--            |            </span>
-<span class="co">-- The name of a function</span>
-<span class="co">-- that will create values</span>
-<span class="co">-- of the type. AKA the</span>
-<span class="co">--     constructor!</span></code></pre></div>
-</section>
-<section id="product-types-3" class="slide level1">
-<h1>Product Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">data</span> <span class="dt">Loc</span> <span class="fu">=</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="dt">Int</span>
-<span class="co">--                 \  /</span>
-<span class="co">--                  \/</span>
-<span class="co">--     Constructor parameters (types).</span></code></pre></div>
-</section>
-<section id="product-types-4" class="slide level1">
-<h1>Product Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Loc</span> <span class="fu">=</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="dt">Int</span>
-
-whereAmI <span class="fu">=</span> <span class="dt">Loc</span> <span class="dv">1</span> <span class="dv">2</span></code></pre></div>
-</section>
-<section id="product-types-5" class="slide level1">
-<h1>Product Types</h1>
-<h3 id="whats-the-opposite-of-construction4">What's the opposite of <em>con</em>struction?<a href="#/fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">locX ::</span> <span class="dt">Loc</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-locX (<span class="dt">Loc</span> x _) <span class="fu">=</span> x
-
-<span class="ot">locY ::</span> <span class="dt">Loc</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-locY (<span class="dt">Loc</span> _ y) <span class="fu">=</span> y
-
-locX (<span class="dt">Loc</span> <span class="dv">1</span> <span class="dv">2</span>) <span class="co">-- 1</span>
-locY (<span class="dt">Loc</span> <span class="dv">1</span> <span class="dv">2</span>) <span class="co">-- 2</span></code></pre></div>
-</section>
-<section id="product-types-6" class="slide level1">
-<h1>Product Types</h1>
-<h3 id="another-way-to-deconstruct.">Another way to deconstruct.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">locX ::</span> <span class="dt">Loc</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-locX l <span class="fu">=</span> <span class="kw">case</span> l <span class="kw">of</span>
-           (<span class="dt">Loc</span> x _) <span class="ot">-&gt;</span> x</code></pre></div>
-</section>
-<section id="exercise-set-2" class="slide level1">
-<h1>Exercise Set 2</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">CharacterStats</span> <span class="fu">=</span> <span class="dt">CharacterStats</span> <span class="dt">Int</span> <span class="dt">Int</span>
-
-<span class="ot">startingStats ::</span> <span class="dt">CharacterStats</span>
-
-<span class="ot">healthOf ::</span> <span class="dt">CharacterStats</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-
-<span class="ot">strengthOf ::</span> <span class="dt">CharacterStats</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre></div>
-<ol type="1">
-<li>Create a <code>CharacterStats</code> product type to model some character statistics in an role-playing game (e.g. health and strength.).</li>
-<li>Create some values of that type to understand how to use data constructors (<code>startingStats</code>).</li>
-<li>Use pattern matching to extract individual components out of the data type (<code>healthOf</code>, <code>strengthOf</code>).</li>
-</ol>
-</section>
-<section id="coproduct-types" class="slide level1">
-<h1>Coproduct Types</h1>
-<h3 id="aka-sum-types2">(AKA 'Sum' Types)<a href="#/fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span>
-  <span class="dt">Ogre</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="fu">|</span>
-  <span class="dt">Wolf</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span></code></pre></div>
-</section>
-<section id="coproduct-types-1" class="slide level1">
-<h1>Coproduct Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- The name of</span>
-<span class="co">--  the type</span>
-<span class="co">--     |</span>
-<span class="co">--     |</span>
-  <span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span>
-    <span class="dt">Ogre</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="fu">|</span>
-    <span class="dt">Wolf</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span></code></pre></div>
-</section>
-<section id="coproduct-types-2" class="slide level1">
-<h1>Coproduct Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span>
-    <span class="dt">Ogre</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="fu">|</span>
-    <span class="dt">Wolf</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span>
-<span class="co">--   |</span>
-<span class="co">--   |</span>
-<span class="co">-- Data constructor.  </span></code></pre></div>
-</section>
-<section id="coproduct-types-3" class="slide level1">
-<h1>Coproduct Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span>
-    <span class="dt">Ogre</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="fu">|</span>
-    <span class="dt">Wolf</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span>
-<span class="co">--          |    |    |</span>
-<span class="co">--           \   |   /</span>
-<span class="co">--             \ | /</span>
-<span class="co">--   Constructor parameters (types).</span></code></pre></div>
-</section>
-<section id="coproduct-types-4" class="slide level1">
-<h1>Coproduct Types</h1>
-<h3 id="destruction-pattern-matching.">Destruction / pattern matching.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">nameOf ::</span> <span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-nameOf (<span class="dt">Ogre</span> name _ _) <span class="fu">=</span> name
-nameOf (<span class="dt">Wolf</span> name _ _) <span class="fu">=</span> name</code></pre></div>
-</section>
-<section id="coproduct-types-5" class="slide level1">
-<h1>Coproduct Types</h1>
-<h3 id="deconstruction-pattern-matching.">Deconstruction / pattern matching.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span>
-  <span class="dt">Ogre</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span> <span class="fu">|</span>
-  <span class="dt">Wolf</span> <span class="dt">String</span> <span class="dt">Loc</span> <span class="dt">Int</span>
-
-<span class="ot">nameOf ::</span> <span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-nameOf npc <span class="fu">=</span> <span class="kw">case</span> npc <span class="kw">of</span>
-               (<span class="dt">Ogre</span> name _ _) <span class="ot">-&gt;</span> name
-               (<span class="dt">Wolf</span> name _ _) <span class="ot">-&gt;</span> name</code></pre></div>
-</section>
-<section id="exercise-set-3" class="slide level1">
-<h1>Exercise Set 3</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Monster</span>
-  <span class="fu">=</span> <span class="dt">Wolf</span> <span class="dt">CharacterStats</span>
-  <span class="fu">|</span> <span class="dt">Ogre</span> <span class="dt">CharacterStats</span>
-
-<span class="ot">bigBadWolf ::</span> <span class="dt">CharacterStats</span>
-
-<span class="ot">fearfulOgre ::</span> <span class="dt">CharacterStats</span>
-
-<span class="ot">monsterStrength ::</span> <span class="dt">Monster</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre></div>
-<ol type="1">
-<li>Create a <code>Monster</code> sum type to represent different types of monsters in a game. Make sure they share at least one common piece of information (e.g. <code>health</code> or <code>name</code>).</li>
-<li>Create a few monsters of varying types (<code>bigBadWolf</code>, <code>fearfulOgre</code>).</li>
-<li>Create a function to extract out a piece of information common to all constructors (<code>monsterStrength</code>).</li>
-</ol>
-</section>
-<section id="record-types5" class="slide level1">
-<h1>Record Types<a href="#/fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span>
-  <span class="dt">Ogre</span> {<span class="ot">name ::</span> <span class="dt">String</span>,<span class="ot"> loc ::</span> <span class="dt">Loc</span>,<span class="ot"> health ::</span> <span class="dt">Int</span>} <span class="fu">|</span>
-  <span class="dt">Wolf</span> {<span class="ot">name ::</span> <span class="dt">String</span>,<span class="ot"> loc ::</span> <span class="dt">Loc</span>,<span class="ot"> health ::</span> <span class="dt">Int</span>}</code></pre></div>
-</section>
-<section id="record-types" class="slide level1">
-<h1>Record Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span>
-    <span class="dt">Ogre</span> {<span class="ot">name ::</span> <span class="dt">String</span>,<span class="ot"> loc ::</span> <span class="dt">Loc</span>,<span class="ot"> health ::</span> <span class="dt">Int</span>} <span class="fu">|</span>
-    <span class="dt">Wolf</span> {<span class="ot">name ::</span> <span class="dt">String</span>,<span class="ot"> loc ::</span> <span class="dt">Loc</span>,<span class="ot"> health ::</span> <span class="dt">Int</span>}
-<span class="co">--        |                                       |</span>
-<span class="co">--        \-------------------|-------------------/</span>
-<span class="co">--                            |</span>
-<span class="co">--                    A &#39;row&#39; of types.</span></code></pre></div>
-</section>
-<section id="record-types-1" class="slide level1">
-<h1>Record Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span>
-    <span class="dt">Ogre</span> {<span class="ot">name ::</span> <span class="dt">String</span>,<span class="ot"> loc ::</span> <span class="dt">Loc</span>,<span class="ot"> health ::</span> <span class="dt">Int</span>} <span class="fu">|</span>
-    <span class="dt">Wolf</span> {<span class="ot">name ::</span> <span class="dt">String</span>,<span class="ot"> loc ::</span> <span class="dt">Loc</span>,<span class="ot"> health ::</span> <span class="dt">Int</span>}
-<span class="co">--         |</span>
-<span class="co">--      A label.</span></code></pre></div>
-</section>
-<section id="record-types-2" class="slide level1">
-<h1>Record Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span>
-    <span class="dt">Ogre</span> {<span class="ot">name ::</span> <span class="dt">String</span>,<span class="ot"> loc ::</span> <span class="dt">Loc</span>,<span class="ot"> health ::</span> <span class="dt">Int</span>} <span class="fu">|</span>
-    <span class="dt">Wolf</span> {<span class="ot">name ::</span> <span class="dt">String</span>,<span class="ot"> loc ::</span> <span class="dt">Loc</span>,<span class="ot"> health ::</span> <span class="dt">Int</span>}
-<span class="co">--                  |</span>
-<span class="co">--        The type of the label.</span></code></pre></div>
-</section>
-<section id="record-types-3" class="slide level1">
-<h1>Record Types</h1>
-<h3 id="construction-deconstruction.">Construction / deconstruction.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">makeWolf ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Loc</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">NPC</span>
-makeWolf name loc health <span class="fu">=</span> <span class="dt">Wolf</span> {name<span class="fu">:</span> name, loc<span class="fu">:</span> loc, health<span class="fu">:</span> health}
-
-<span class="ot">nameOf ::</span> <span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-nameOf (<span class="dt">Ogre</span> { name <span class="fu">:</span> n }) <span class="fu">=</span> n
-nameOf (<span class="dt">Wolf</span> { name <span class="fu">:</span> n }) <span class="fu">=</span> n</code></pre></div>
-</section>
-<section id="record-types-4" class="slide level1">
-<h1>Record Types</h1>
-<h3 id="the-dot-operator.">The dot operator.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">nameOf ::</span> <span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-nameOf (<span class="dt">Ogre</span> record) <span class="fu">=</span> record<span class="fu">.</span>name
-nameOf (<span class="dt">Wolf</span> record) <span class="fu">=</span> record<span class="fu">.</span>name</code></pre></div>
-</section>
-<section id="record-types-5" class="slide level1">
-<h1>Record Types</h1>
-<h3 id="updating-records.">'Updating' records.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">changeName ::</span> <span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">NPC</span>
-changeName (<span class="dt">Ogre</span> r) <span class="fu">=</span> <span class="dt">Ogre</span> r { name <span class="fu">=</span> <span class="st">&quot;Shrek&quot;</span> }
-changeName (<span class="dt">Wolf</span> r) <span class="fu">=</span> <span class="dt">Wolf</span> r { name <span class="fu">=</span> <span class="st">&quot;Big Bad&quot;</span> }</code></pre></div>
-</section>
-<section id="record-types-6" class="slide level1">
-<h1>Record Types</h1>
-<h3 id="magic-record-syntax-stuff.">Magic record syntax stuff.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(_ { name <span class="fu">=</span> <span class="st">&quot;Shrek&quot;</span> }) <span class="fu">//</span> <span class="dt">Function</span> from record to updated record
-
-record { name <span class="fu">=</span> _ }    <span class="fu">//</span> <span class="dt">Function</span> from string to updated <span class="ot">`record`</span>
-
-(_ { name <span class="fu">=</span> _ })       <span class="fu">//</span> <span class="dt">Guess</span><span class="fu">?</span> <span class="fu">:-</span>)</code></pre></div>
-</section>
-<section id="exercise-set-4" class="slide level1">
-<h1>Exercise Set 4</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">State</span> <span class="fu">=</span> {
-<span class="ot">  playerStatus ::</span> <span class="dt">CharacterStatus</span>,
-<span class="ot">  playerStats  ::</span> <span class="dt">CharacterStats</span> }</code></pre></div>
-<ol type="1">
-<li>Modify the <code>State</code> record in <code>Game.State</code> to add <code>playerStatus</code> and <code>playerStats</code> (you will have to modify <code>initial</code> in the <code>Main</code> module).</li>
-<li>Modify the <code>describe</code> function in <code>Main</code> so it describes the player state.</li>
-</ol>
-</section>
-<section id="basic-function-types" class="slide level1">
-<h1>Basic Function Types</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Monster</span> <span class="fu">=</span> <span class="dt">Giant</span> <span class="fu">|</span> <span class="dt">Alien</span>
-<span class="kw">data</span> <span class="dt">FavoriteFood</span> <span class="fu">=</span> <span class="dt">Humans</span> <span class="fu">|</span> <span class="dt">Kittens</span>
-
-<span class="ot">fave ::</span> <span class="dt">Monster</span> <span class="ot">-&gt;</span> <span class="dt">FavoriteFood</span>
-fave <span class="dt">Giant</span> <span class="fu">=</span> <span class="dt">Humans</span>
-fave <span class="dt">Alien</span> <span class="fu">=</span> <span class="dt">Kittens</span></code></pre></div>
-</section>
-<section id="basic-function-types-1" class="slide level1">
-<h1>Basic Function Types</h1>
-<h3 id="lambdas-aka-closures-aka-anonymous-functions-aka-arrow-functions-aka...">Lambdas AKA closures AKA anonymous functions AKA arrow functions AKA...</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">fave ::</span> <span class="dt">Monster</span> <span class="ot">-&gt;</span> <span class="dt">FavoriteFood</span>
-fave <span class="fu">=</span> \monster <span class="ot">-&gt;</span> <span class="kw">case</span> monster <span class="kw">of</span>
-  <span class="dt">Giant</span> <span class="ot">-&gt;</span> <span class="dt">Humans</span>
-  <span class="dt">Alien</span> <span class="ot">-&gt;</span> <span class="dt">Kittens</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> fave <span class="op">=</span> <span class="kw">function</span>(monster) <span class="op">{</span>
-  ...
+    <span class="kw">function</span> <span class="at">setCount</span>(uint _count) <span class="op">{</span>
+        count <span class="op">=</span> _count<span class="op">;</span>
+        <span class="at">CountSet</span>(_count)<span class="op">;</span>
+    <span class="op">}</span>
 <span class="op">}</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">// ECMAScript 6</span>
-<span class="kw">var</span> fave <span class="op">=</span> monster <span class="op">=&gt;</span> ...</code></pre></div>
 </section>
-<section id="exercise-set-5" class="slide level1">
-<h1>Exercise Set 5</h1>
+<section class="slide level1">
+
+<h2 id="generator---simple-storage-1">Generator - Simple Storage</h2>
+<p>Here is the client library generated which is generated from the ABI <a href="#/fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">count ::</span> forall e p <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
+  <span class="ot">=&gt;</span> <span class="dt">Address</span> 
+  <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> 
+  <span class="ot">-&gt;</span> <span class="dt">CallMode</span> 
+  <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e (<span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>))
+
+<span class="ot">setCount ::</span> forall e p <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
+  <span class="ot">=&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> 
+  <span class="ot">-&gt;</span> <span class="dt">Address</span> 
+  <span class="ot">-&gt;</span> <span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>) 
+  <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
+
+<span class="kw">newtype</span> <span class="dt">CountSet</span> <span class="fu">=</span> 
+  <span class="dt">CountSet</span> {<span class="ot"> _count ::</span> <span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>) }</code></pre></div>
+</section>
+<section class="slide level1">
+
+<h2 id="generator---benefits">Generator - Benefits</h2>
 <ol type="1">
-<li>Describe the type of a function called <code>defeats</code>, which determines if a first <code>CharacterStats</code> can be used to defeat a second <code>CharacterStats</code> (by returning <code>true</code> or <code>false</code>).</li>
-<li>Implement the function by using a lambda (hint: <code>defeats = \stats1 stats2 -&gt; ...</code> or <code>defeats = \stats1 -&gt; \stats2 -&gt; ...</code>).</li>
+<li>Reduce boiler plate.</li>
+<li>You don't want to access the raw encoders/decoders manually when templating your transactions, laborious and potentially error prone.</li>
+<li>The generator is meant to be run as an <code>npm build</code> step - any breaking changes to your contracts will cause compile time errors in your application.</li>
+<li>Specially generated types allow for higher levels of abstraction in library.</li>
 </ol>
 </section>
-<section id="type-aliases" class="slide level1">
-<h1>Type Aliases</h1>
-<h3 id="whats-in-a-name">What's in a name?</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">CharData</span> <span class="fu">=</span>
-  {<span class="ot">name ::</span> <span class="dt">String</span>,<span class="ot"> loc ::</span> <span class="dt">Loc</span>,<span class="ot"> health ::</span> <span class="dt">Int</span>}
+<section class="slide level1">
 
-<span class="kw">data</span> <span class="dt">NPC</span> <span class="fu">=</span> <span class="dt">Ogre</span> <span class="dt">CharData</span> <span class="fu">|</span> <span class="dt">Wolf</span> <span class="dt">CharData</span></code></pre></div>
-</section>
-<section id="newtypes" class="slide level1">
-<h1>Newtypes</h1>
-<h3 id="wrappers-without-the-overhead.">Wrappers without the overhead.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Health</span> <span class="fu">=</span> <span class="dt">Health</span> <span class="dt">Int</span>
+<h2 id="generator---how-does-it-work">Generator - How does it work</h2>
+<p>As an example, take a function call that generates a transaction:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">SetCountFn</span> <span class="fu">=</span> <span class="dt">Tagged</span> (<span class="dt">SProxy</span> <span class="st">&quot;setCount(uint256)&quot;</span>) (<span class="dt">Tuple1</span> (<span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>)))
 
-<span class="ot">dead ::</span> <span class="dt">Health</span>
-dead <span class="fu">=</span> <span class="dt">Health</span> <span class="dv">0</span></code></pre></div>
+<span class="ot">setCount ::</span> forall e p <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
+  <span class="ot">=&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> 
+  <span class="ot">-&gt;</span> <span class="dt">Address</span> 
+  <span class="ot">-&gt;</span> <span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>) 
+  <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
+setCount x0 x1 x2 <span class="fu">=</span> sendTx x0 x1 noPay ((tagged <span class="fu">$</span> <span class="dt">Tuple1</span> x2)<span class="ot"> ::</span> <span class="dt">SetCountFn</span>)</code></pre></div>
+<p>Notice the <code>noPay</code></p>
 </section>
-<section id="newtypes-1" class="slide level1">
-<h1>Newtypes</h1>
-<h3 id="deconstruction-pattern-matching.-1">Deconstruction / pattern matching.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Health</span> <span class="fu">=</span> <span class="dt">Health</span> <span class="dt">Int</span>
+<section class="slide level1">
 
-<span class="ot">isAlive ::</span> <span class="dt">Health</span> <span class="ot">-&gt;</span> <span class="dt">Boolean</span>
-isAlive (<span class="dt">Health</span> v) <span class="fu">=</span> v <span class="fu">&gt;</span> <span class="dv">0</span>
+<h2 id="generator---how-does-it-work-1">Generator - How does it work</h2>
+<p>All templated transaction functions are run with the <code>sendTx</code> method:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">TxMethod</span> (<span class="ot">selector ::</span> <span class="dt">Symbol</span>) a <span class="kw">where</span>
+<span class="ot">    sendTx ::</span> forall p e u<span class="fu">.</span>
+              <span class="dt">IsAsyncProvider</span> p
+      <span class="ot">=&gt;</span> <span class="dt">IsSymbol</span> selector
+      <span class="ot">=&gt;</span> <span class="dt">EtherUnit</span> u
+      <span class="ot">=&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> <span class="co">-- Contract address</span>
+      <span class="ot">-&gt;</span> <span class="dt">Address</span>       <span class="co">-- From address</span>
+      <span class="ot">-&gt;</span> u             <span class="co">-- paymentValue in some denomination</span>
+      <span class="ot">-&gt;</span> <span class="dt">Tagged</span> (<span class="dt">SProxy</span> selector) a <span class="co">-- Method data</span>
+      <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>         <span class="co">-- &#39;Web3&#39; wrapped tx hash</span></code></pre></div>
+</section>
+<section class="slide level1">
 
-isAlive h <span class="fu">=</span> <span class="kw">case</span> h <span class="kw">of</span>
-              <span class="dt">Health</span> v <span class="ot">-&gt;</span> v <span class="fu">&gt;</span> <span class="dv">0</span></code></pre></div>
-</section>
-<section id="exercise-set-6" class="slide level1">
-<h1>Exercise Set 6</h1>
-<ol type="1">
-<li>Create newtypes for any numeric statistics in <code>CharacterStats</code> (e.g. <code>Health</code> and <code>Strength</code>).</li>
-<li>Create a type synonym called <code>StatsModifier</code> for a function <code>CharacterStats -&gt; CharacterStats</code>.</li>
-</ol>
-</section>
-<section id="higher-order-functions" class="slide level1">
-<h1>Higher-Order Functions</h1>
-<h3 id="or-omg-sets-can-hold-functions">Or, OMG sets can hold functions!!!</h3>
-</section>
-<section id="higher-order-functions-1" class="slide level1">
-<h1>Higher-Order Functions</h1>
-<h3 id="functions-that-accept-functions.">Functions that accept functions.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">likesEmptyString ::</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Boolean</span>) <span class="ot">-&gt;</span> <span class="dt">Boolean</span>
-likesEmptyString f <span class="fu">=</span> f <span class="st">&quot;&quot;</span></code></pre></div>
-</section>
-<section id="higher-order-functions-2" class="slide level1">
-<h1>Higher-Order Functions</h1>
-<h3 id="functions-that-return-functions.">Functions that return functions.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">matches ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Boolean</span>)
-matches v <span class="fu">=</span> \text <span class="ot">-&gt;</span> text <span class="fu">==</span> v
-
-matchesEvil <span class="fu">=</span> matches <span class="st">&quot;evil&quot;</span>
-
-matchesEvil <span class="st">&quot;john&quot;</span> <span class="co">-- false</span>
-matchesEvil <span class="st">&quot;evil&quot;</span> <span class="co">-- true</span></code></pre></div>
-</section>
-<section id="higher-order-functions-3" class="slide level1">
-<h1>Higher-Order Functions</h1>
-<h3 id="multi-parameter-functions.6">&quot;Multi-parameter&quot; functions.<a href="#/fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">damageNpc ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">NPC</span>)
-damageNpc damage <span class="fu">=</span> \npc <span class="ot">-&gt;</span> <span class="fu">...</span></code></pre></div>
-</section>
-<section id="higher-order-functions-4" class="slide level1">
-<h1>Higher-Order Functions</h1>
-<h3 id="making-sense-of-multi-parameter-functions-values.">Making sense of &quot;multi-parameter&quot; functions: values.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">f a b c d e
-
-<span class="co">-- (((((f a) b) c) d) e)</span></code></pre></div>
-</section>
-<section id="higher-order-functions-5" class="slide level1">
-<h1>Higher-Order Functions</h1>
-<h3 id="making-sense-of-multi-parameter-functions-types.">Making sense of &quot;multi-parameter&quot; functions: types.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f ::</span> a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c <span class="ot">-&gt;</span> d <span class="ot">-&gt;</span> e
-
-<span class="co">-- f :: (a -&gt; (b -&gt; (c -&gt; (d -&gt; e))))</span></code></pre></div>
-</section>
-<section id="higher-order-functions-6" class="slide level1">
-<h1>Higher-Order Functions</h1>
-<h3 id="more-functions-that-return-functions.">MORE functions that return functions.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">damageNpc ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">NPC</span>)
-damageNpc <span class="fu">=</span> \damage <span class="ot">-&gt;</span> \npc <span class="ot">-&gt;</span> <span class="fu">...</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">damageNpc ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">NPC</span>)
-damageNpc <span class="fu">=</span> \damage npc <span class="ot">-&gt;</span> <span class="fu">...</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">damageNpc ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">NPC</span>)
-damageNpc damage <span class="fu">=</span> \npc <span class="ot">-&gt;</span> <span class="fu">...</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">damageNpc ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">NPC</span> <span class="ot">-&gt;</span> <span class="dt">NPC</span>)
-damageNpc damage npc <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
-</section>
-<section id="exercise-set-7" class="slide level1">
-<h1>Exercise Set 7</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">boostHealth ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">CharacterStats</span> <span class="ot">-&gt;</span> <span class="dt">CharacterStats</span>)
-
-<span class="ot">boostStrength ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> (<span class="dt">CharacterStats</span> <span class="ot">-&gt;</span> <span class="dt">CharacterStats</span>)</code></pre></div>
-<ol type="1">
-<li>Create a function <code>boostHealth</code> which, given an integer amount, returns another function that takes stats and boosts their health.</li>
-<li>Create a function <code>boostStrength</code> which, given an integer amount, returns another function that takes stats and boosts their health.</li>
-</ol>
-</section>
-<section id="parametric-polymorphism" class="slide level1">
-<h1>Parametric Polymorphism</h1>
-<h3 id="para..what">Para..what?</h3>
-</section>
-<section id="polymorphic-data" class="slide level1">
-<h1>Polymorphic Data</h1>
-<h3 id="type-constructors-data-with-holes.">Type constructors: data with &quot;holes&quot;.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Map4x4</span> a <span class="fu">=</span>
-  <span class="dt">Map4x4</span> a a a a
-         a a a a
-         a a a a
-         a a a a
-
-<span class="ot">boolMap4x4 ::</span> <span class="dt">Map4x4</span> <span class="dt">Boolean</span> <span class="fu">=</span>
-  <span class="dt">Map4x4</span> true  true  false true
-         false true  true  true
-         false false false true
-         true  false false true</code></pre></div>
-</section>
-<section id="polymorphic-data-1" class="slide level1">
-<h1>Polymorphic Data</h1>
-<h3 id="type-level-functions.">Type-level functions.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">
-<span class="co">-- invalid :: Map4x4  &lt;- Not a type; a type function!</span>
-
-<span class="ot">valid ::</span> <span class="dt">Map4x4</span> <span class="dt">Boolean</span></code></pre></div>
-<h2 id="the-type-constructor-map4x4-is-a-function-whose-domain-is-the-set-of-all-types.-pass-it-a-type-and-it-will-return-a-type">The type constructor <code>Map4x4</code> is a <em>function</em> whose domain is the set of all types. Pass it a type, and it will return a type!</h2>
-</section>
-<section id="polymorphic-functions" class="slide level1">
-<h1>Polymorphic Functions</h1>
-<h3 id="or-omg-sets-can-hold-sets">Or, OMG sets can hold sets!!!</h3>
-</section>
-<section id="polymorphic-functions-1" class="slide level1">
-<h1>Polymorphic Functions</h1>
-<h3 id="the-heart-of-functional-abstraction.">The heart of functional abstraction.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">upperLeft ::</span> forall a<span class="fu">.</span> <span class="dt">Map4x4</span> a <span class="ot">-&gt;</span> a
-upperLeft v _ _ _
-          _ _ _ _
-          _ _ _ _
-          _ _ _ _ <span class="fu">=</span> v</code></pre></div>
-</section>
-<section id="polymorphic-functions-2" class="slide level1">
-<h1>Polymorphic Functions</h1>
-<h3 id="how-to-read-these-crazy-signatures.">How to read these crazy signatures.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">upperLeft ::</span> forall a<span class="fu">.</span> <span class="dt">Map4x4</span> a <span class="ot">-&gt;</span> a
-
-<span class="co">-- (a :: Type) -&gt; Map4x4 a -&gt; a</span></code></pre></div>
-</section>
-<section id="exercise-set-8" class="slide level1">
-<h1>Exercise Set 8</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Inventory</span> a b
-  <span class="fu">=</span> <span class="dt">LeftHand</span> a
-  <span class="fu">|</span> <span class="dt">RightHand</span> b
-  <span class="fu">|</span> <span class="dt">BothHands</span> a b
-  <span class="fu">|</span> <span class="dt">Empty</span>
-
-<span class="ot">isEmpty ::</span> <span class="fu">???</span></code></pre></div>
-<ol type="1">
-<li>Create a polymorphic <code>Inventory</code> sum type that can represents what the player is carrying in his or her hands.</li>
-<li>Create a polymorphic function that determines whether or not the player is carrying anything.</li>
-</ol>
-</section>
-<section id="extensible-rows" class="slide level1">
-<h1>Extensible Rows</h1>
-<h3 id="like-duck-typing-only-better.">Like duck typing only better.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Point</span> r <span class="fu">=</span> {<span class="ot"> x ::</span> <span class="dt">Int</span>,<span class="ot"> y ::</span> <span class="dt">Int</span> <span class="fu">|</span> r }</code></pre></div>
-</section>
-<section id="extensible-rows-1" class="slide level1">
-<h1>Extensible Rows</h1>
-<h3 id="like-duck-typing-only-better.-1">Like duck typing only better.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Point</span> r <span class="fu">=</span> {<span class="ot"> x ::</span> <span class="dt">Int</span>,<span class="ot"> y ::</span> <span class="dt">Int</span> <span class="fu">|</span> r }
-<span class="co">--         |                        |</span>
-<span class="co">--         |                        |</span>
-<span class="co">--    &#39;remainder&#39;     syntax that means &quot;the rest of the row&quot;</span>
-
-<span class="ot">gimmeX ::</span> forall r<span class="fu">.</span> <span class="dt">Point</span> r <span class="ot">-&gt;</span> <span class="dt">Int</span>
-gimmeX p <span class="fu">=</span> p<span class="fu">.</span>x
-
-gimmeX {x<span class="fu">:</span> <span class="dv">1</span>, y<span class="fu">:</span> <span class="dv">2</span>, z<span class="fu">:</span> <span class="dv">3</span>} <span class="co">-- 1 - works!</span>
-
-<span class="co">-- gimmeX {x: 1, z: 3}    -- Invalid, no y!</span></code></pre></div>
-</section>
-<section id="exercise-set-9" class="slide level1">
-<h1>Exercise Set 9</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">NonPlayerCharacter</span> <span class="fu">=</span> <span class="fu">???</span>
-<span class="kw">type</span> <span class="dt">Item</span> <span class="fu">=</span> <span class="fu">???</span>
-<span class="kw">type</span> <span class="dt">PlayerCharacter</span> <span class="fu">=</span> <span class="fu">???</span>
-
-<span class="ot">getName ::</span> <span class="fu">???</span>
-getName r <span class="fu">=</span> r<span class="fu">.</span>name</code></pre></div>
-<ol type="1">
-<li>Create records for <code>NonPlayerCharacter</code>, <code>Item</code>, and <code>PlayerCharacter</code> that all share at least one field (<code>name</code>).</li>
-<li>Create a function that extracts a name from any record which has <em>at least</em> a <code>name</code> field of type <code>String</code>.</li>
-</ol>
-</section>
-<section id="kinds" class="slide level1">
-<h1>Kinds</h1>
-<h3 id="categories-of-sets.">Categories of sets.</h3>
-</section>
-<section id="section" class="slide level1">
-<h1><code>*</code></h1>
-<h3 id="the-name-for-the-category-of-sets-of-values.">The name for the category of <em>sets of values</em>.</h3>
-<h3 id="aka-type">(AKA <em>Type</em>)</h3>
-<p>Includes things like:</p>
+<h2 id="generator---events">Generator - Events</h2>
 <ul>
-<li><code>CharacterStatus</code></li>
-<li><code>CharacterStats</code></li>
-<li><code>String</code></li>
+<li>Events were difficult to find a good solution for due to the Ethereum log structure.</li>
+<li>All events can be handled with the <code>event</code> method, which similarly defined in <code>hs-web3</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">event ::</span> forall p e a i ni<span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p
+       <span class="ot">=&gt;</span> <span class="dt">DecodeEvent</span> i ni a
+       <span class="ot">=&gt;</span> <span class="dt">EventFilter</span> a
+       <span class="ot">=&gt;</span> <span class="dt">Address</span>
+       <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">ReaderT</span> <span class="dt">Change</span> (<span class="dt">Web3</span> p e) <span class="dt">EventAction</span>)
+       <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e (<span class="dt">Fiber</span> (<span class="ot">eth ::</span> <span class="dt">ETH</span> <span class="fu">|</span> e) <span class="dt">Unit</span>)</code></pre></div>
+<ul>
+<li>this looks more complicated than it is.</li>
 </ul>
 </section>
-<section id="section-1" class="slide level1">
-<h1><code>* -&gt; *</code></h1>
-<h3 id="the-name-for-the-category-of-type-level-functions.">The name for the category of <em>type-level functions</em>.</h3>
-<h3 id="aka-higher-kinded-type-type-constructor">(AKA Higher-Kinded Type / Type Constructor)</h3>
-</section>
-<section id="section-2" class="slide level1">
-<h1><code>* -&gt; *</code></h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">List</span> a <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> <span class="dt">Cons</span> a (<span class="dt">List</span> a)</code></pre></div>
-</section>
-<section id="section-3" class="slide level1">
-<h1><code>* -&gt; *</code></h1>
-<h3 id="type-constructors-are-just-math-functions">Type constructors are just (math) functions!</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addOne ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-addOne n <span class="fu">=</span> n <span class="fu">+</span> <span class="dv">1</span>
+<section class="slide level1">
 
-result <span class="fu">=</span> addOne <span class="dv">1</span>
-
-<span class="dt">List</span><span class="ot"> ::</span> <span class="fu">*</span> <span class="ot">-&gt;</span> <span class="fu">*</span>
-<span class="kw">data</span> <span class="dt">List</span> a <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> <span class="dt">Cons</span> a (<span class="dt">List</span> a)
-
-<span class="dt">Result</span> <span class="fu">=</span> <span class="dt">List</span> <span class="dt">Int</span></code></pre></div>
-</section>
-<section id="section-4" class="slide level1">
-<h1><code>* -&gt; * -&gt; *</code></h1>
-<h3 id="turtles-all-the-way-down.">Turtles all the way down.</h3>
-<pre><code>Map :: * -&gt; * -&gt; *
-data Map k v = ...</code></pre>
-</section>
-<section id="section-5" class="slide level1">
-<h1><code>* -&gt; * -&gt; * -&gt; * -&gt; * -&gt; *</code></h1>
-<h3 id="reading-type-constructors.">Reading type constructors.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">foo ::</span> f a b c d e
-
-<span class="co">-- (((((f a) b) c) d) e)</span></code></pre></div>
-</section>
-<section id="effect" class="slide level1">
-<h1><code>Effect</code></h1>
-<h3 id="the-name-for-the-category-of-sets-of-effects.">The name for the category of <em>sets of effects</em>.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>data <span class="dt">DOM</span> :: <span class="dt">Effect</span></code></pre></div>
-</section>
-<section id="effect-1" class="slide level1">
-<h1><code># Effect</code></h1>
-<h3 id="the-name-for-the-category-of-rows-of-effects.">The name for the category of <em>rows of effects</em>.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Supply a row of effects and a type,</span>
-<span class="co">-- and get back another type:</span>
-foreign <span class="kw">import </span>data <span class="dt">Eff</span> :: # <span class="dt">Effect</span> -&gt; * -&gt; *
-
-<span class="ot">trace ::</span> forall r<span class="fu">.</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Eff</span> (<span class="ot">trace ::</span> <span class="dt">Trace</span> <span class="fu">|</span> r) <span class="dt">Unit</span></code></pre></div>
-</section>
-<section id="section-6" class="slide level1">
-<h1><code># *</code></h1>
-<h3 id="the-name-for-the-category-of-rows-of-types.">The name for the category of <em>rows of types</em>.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Supply a row of types, get back another type:</span>
-foreign <span class="kw">import </span>data <span class="dt">Object</span> :: # * -&gt; *</code></pre></div>
-</section>
-<section id="foreign-types7" class="slide level1">
-<h1>Foreign Types<a href="#/fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a></h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>data jQuery :: *</code></pre></div>
-</section>
-<section id="fp-toolbox" class="slide level1">
-<h1>FP Toolbox</h1>
-<h3 id="stuff-you-couldnt-escape-even-if-you-wanted-to.">Stuff you couldn't escape even if you wanted to.</h3>
-</section>
-<section id="fp-toolbox-1" class="slide level1">
-<h1>FP Toolbox</h1>
-<h3 id="maybe-its-there-maybe-its-not8">Maybe it's there, maybe it's not?<a href="#/fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a></h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="dt">Nothing</span> <span class="fu">|</span> <span class="dt">Just</span> a
-
-<span class="kw">type</span> <span class="dt">Player</span> <span class="fu">=</span>
-  {<span class="ot"> armour ::</span> <span class="dt">Maybe</span> <span class="dt">Armor</span> }</code></pre></div>
-</section>
-<section id="fp-toolbox-2" class="slide level1">
-<h1>FP Toolbox</h1>
-<h3 id="list-the-ultimate-fp-data-structure.">List: the ultimate FP data structure.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">List</span> a <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> <span class="dt">Cons</span> a (<span class="dt">List</span> a)
-<span class="co">--                       |    |</span>
-<span class="co">--                     head   |</span>
-<span class="co">--                          tail</span>
-
-oneTwoThree <span class="fu">=</span> <span class="dt">Cons</span> <span class="dv">1</span> (<span class="dt">Cons</span> <span class="dv">2</span> (<span class="dt">Cons</span> <span class="dv">3</span> <span class="dt">Nil</span>))</code></pre></div>
-</section>
-<section id="fp-toolbox-3" class="slide level1">
-<h1>FP Toolbox</h1>
-<h3 id="either-its-this-or-its-that."><code>Either</code> it's this or it's that.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Either</span> a b <span class="fu">=</span> <span class="dt">Left</span> a <span class="fu">|</span> <span class="dt">Right</span> b
-
-<span class="kw">type</span> <span class="dt">Player</span> <span class="fu">=</span>
-  {<span class="ot"> rightHand ::</span> <span class="dt">Either</span> <span class="dt">Weapon</span> <span class="dt">Shield</span> }</code></pre></div>
-</section>
-<section id="fp-toolbox-4" class="slide level1">
-<h1>FP Toolbox</h1>
-<h3 id="tuple-the-opposite-of-either.9"><code>Tuple</code>, the opposite of <code>Either</code>.<a href="#/fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a></h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tuple</span> a b <span class="fu">=</span> <span class="dt">Tuple</span> a b
-<span class="co">--                     | |</span>
-<span class="co">--                 first second</span>
-<span class="dt">I</span>
-<span class="kw">type</span> <span class="dt">Player</span> <span class="fu">=</span>
-  {<span class="ot"> wrists ::</span> <span class="dt">Tuple</span> (<span class="dt">Maybe</span> <span class="dt">Bracelet</span>) (<span class="dt">Maybe</span> <span class="dt">Bracelet</span>) }</code></pre></div>
-</section>
-<section id="fp-toolbox-5" class="slide level1">
-<h1>FP Toolbox</h1>
-<h3 id="native-javascript-arrays.">Native Javascript arrays.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]<span class="ot"> ::</span> <span class="dt">Array</span> <span class="dt">Int</span></code></pre></div>
-</section>
-<section id="exercise-set-10" class="slide level1">
-<h1>Exercise Set 10</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.List</span>(<span class="dt">List</span>(..))
-
-<span class="kw">data</span> <span class="dt">Location</span>
-  <span class="fu">=</span> <span class="dt">OutideCave</span>
-  <span class="fu">|</span> <span class="dt">InsideCave</span>
-  <span class="fu">|</span> <span class="dt">Plains</span>
-
-<span class="kw">data</span> <span class="dt">Connection</span>
-  <span class="fu">=</span> <span class="dt">GoNorth</span> <span class="dt">Location</span> <span class="dt">Location</span>
-  <span class="fu">|</span> <span class="dt">GoSouth</span> <span class="dt">Location</span> <span class="dt">Location</span>
-  <span class="fu">|</span> <span class="dt">GoEast</span> <span class="dt">Location</span> <span class="dt">Location</span>
-  <span class="fu">|</span> <span class="dt">GoWest</span> <span class="dt">Location</span> <span class="dt">Location</span>
-
-<span class="ot">northsouth ::</span> <span class="dt">Location</span> <span class="ot">-&gt;</span> <span class="dt">Location</span> <span class="ot">-&gt;</span> <span class="dt">List</span> <span class="dt">Connection</span>
-northsouth n s <span class="fu">=</span> <span class="dt">Cons</span> (<span class="dt">GoNorth</span> s n) (<span class="dt">Cons</span> (<span class="dt">GoSouth</span> n s) <span class="dt">Nil</span>)
-
-<span class="ot">westeast ::</span> <span class="dt">Location</span> <span class="ot">-&gt;</span> <span class="dt">Location</span> <span class="ot">-&gt;</span> <span class="dt">List</span> <span class="dt">Connection</span>
-westeast w e <span class="fu">=</span> <span class="dt">Cons</span> (<span class="dt">GoWest</span> e w) (<span class="dt">Cons</span> (<span class="dt">GoEast</span> w e) <span class="dt">Nil</span>)
-
-<span class="co">--</span>
-<span class="co">--  OutsideCave -- Plains</span>
-<span class="co">--       |</span>
-<span class="co">--       |</span>
-<span class="co">--   InsideCave</span>
-<span class="co">--</span>
-<span class="ot">gameMap ::</span> <span class="dt">List</span> <span class="dt">Connection</span>
-gameMap <span class="fu">=</span>
-  northsouth <span class="dt">OutsideCave</span> <span class="dt">InsideCave</span> <span class="fu">++</span>
-  westeast <span class="dt">OutsideCave</span> <span class="dt">Plains</span></code></pre></div>
-<ol type="1">
-<li>Define a <code>Location</code> data type to represent all possible locations in the game world.</li>
-<li>Define a <code>Connection</code> data type to represent a connection (or passageway) from one location to another.</li>
-<li>Create a hypothetical <code>gameMap</code> (which has type <code>List Connection</code>), representing the geography of the game world.</li>
-</ol>
-</section>
-<section id="type-classes" class="slide level1">
-<h1>Type Classes</h1>
-<h3 id="generic-interfaces-the-fp-way.">Generic interfaces, the FP way.</h3>
-</section>
-<section id="type-classes-1" class="slide level1">
-<h1>Type Classes</h1>
-<h3 id="generic-interfaces-in-java.">Generic interfaces in Java.</h3>
-<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> <span class="bu">Appendable</span>&lt;A&gt; {
-  <span class="kw">public</span> A <span class="fu">append</span>(A a1, A a2);
-}
-<span class="kw">class</span> AppendableInt <span class="kw">implements</span> <span class="bu">Appendable</span>&lt;<span class="bu">Integer</span>&gt; {
-  <span class="kw">public</span> <span class="bu">Integer</span> <span class="fu">append</span>(<span class="bu">Integer</span> a1, <span class="bu">Integer</span> a2) {
-    <span class="kw">return</span> a1 + a2;
-  }
-}
-<span class="bu">Appendable</span>&lt;<span class="bu">Integer</span>&gt; appendableInt = <span class="kw">new</span> <span class="fu">AppendableInt</span>();
-appendableInt.<span class="fu">append</span>(<span class="dv">1</span>, <span class="dv">2</span>); <span class="co">// 3!</span></code></pre></div>
-</section>
-<section id="type-classes-2" class="slide level1">
-<h1>Type Classes</h1>
-<h3 id="generic-interfaces-in-javascript.">Generic 'interfaces' in Javascript.</h3>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="at">makeAppendable</span>(append) <span class="op">{</span>
-  <span class="cf">return</span> <span class="op">{</span>
-    <span class="dt">append</span><span class="op">:</span> append
-  <span class="op">};</span>
-<span class="op">}</span>
-
-<span class="kw">var</span> boolAppendable <span class="op">=</span> <span class="at">makeAppendable</span>(
-  <span class="kw">function</span>(v1<span class="op">,</span> v2) <span class="op">{</span>
-    <span class="cf">return</span> v1 <span class="op">&amp;&amp;</span> v2<span class="op">;</span>
-  <span class="op">}</span>
-)<span class="op">;</span>
-
-<span class="va">boolAppendable</span>.<span class="at">append</span>(<span class="kw">true</span><span class="op">,</span> <span class="kw">false</span>)<span class="op">;</span> <span class="co">// false!</span></code></pre></div>
-</section>
-<section id="type-classes-3" class="slide level1">
-<h1>Type Classes</h1>
-<h3 id="generic-interfaces-in-purescript.">Generic interfaces in PureScript.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Appendable</span> a <span class="kw">where</span>
-<span class="ot">  append ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a
-
-<span class="kw">instance</span><span class="ot"> appendableInt ::</span> <span class="dt">Appendable</span> <span class="dt">Int</span> <span class="kw">where</span>
-  append a1 a2 <span class="fu">=</span> a1 <span class="fu">+</span> a2
-
-append <span class="dv">1</span> <span class="dv">2</span> <span class="co">-- 3!</span></code></pre></div>
-</section>
-<section id="type-classes-4" class="slide level1">
-<h1>Type Classes</h1>
-<h3 id="turbocharged-polymorphism.">Turbocharged polymorphism.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">repeat<span class="ot"> ::</span> forall a<span class="fu">.</span> (<span class="dt">Appendable</span> a) <span class="ot">=&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a
-repeat <span class="dv">0</span> a <span class="fu">=</span> a
-repeat n a <span class="fu">=</span> append (repeat (n <span class="fu">-</span> <span class="dv">1</span>) a) a
-
-sort<span class="ot"> ::</span> forall a<span class="fu">.</span> (<span class="dt">Ord</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a]
-
-<span class="co">-- etc.</span></code></pre></div>
-</section>
-<section id="type-classes-5" class="slide level1">
-<h1>Type Classes</h1>
-<h3 id="hierarchies-like-oo-inheritance-but-not.">Hierarchies: like OO inheritance, but not.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Eq</span> a <span class="kw">where</span>
-<span class="ot">  equals ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Boolean</span>
-
-<span class="kw">data</span> <span class="dt">Ordering</span> <span class="fu">=</span> <span class="dt">LT</span> <span class="fu">|</span> <span class="dt">GT</span> <span class="fu">|</span> <span class="dt">EQ</span>
-
-<span class="kw">class</span> (<span class="dt">Eq</span> a) <span class="fu">&lt;=</span> <span class="dt">Ord</span> a <span class="kw">where</span>
-<span class="ot">  compare ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Ordering</span></code></pre></div>
-</section>
-<section id="type-classes-6" class="slide level1">
-<h1>Type Classes</h1>
-<h3 id="hierarchies-like-oo-inheritance-but-not.-1">Hierarchies: like OO inheritance, but not.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> (<span class="dt">Eq</span> a) <span class="fu">&lt;=</span> <span class="dt">Ord</span> a <span class="kw">where</span>
-<span class="co">--       |</span>
-<span class="co">--       |</span>
-<span class="co">-- The superclass.</span>
-<span class="co">--</span>
-<span class="co">-- Read: &quot;Ord a implies Eq a&quot;</span></code></pre></div>
-</section>
-<section id="exercise-set-11" class="slide level1">
-<h1>Exercise Set 11</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Describable</span> a <span class="kw">where</span>
-<span class="ot">  describe ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span>
-
-<span class="ot">  examine ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span>
-
-<span class="kw">data</span> <span class="dt">Weapon</span> <span class="fu">=</span> <span class="dt">Sword</span> <span class="fu">|</span> <span class="dt">Spear</span>
-
-<span class="kw">instance</span><span class="ot"> describableWeapon ::</span> <span class="dt">Describable</span> <span class="dt">Weapon</span> <span class="kw">where</span>
-<span class="ot">  describe ::</span> <span class="dt">Weapon</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-
-<span class="ot">  examine ::</span> <span class="dt">Weapon</span> <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
-<ol type="1">
-<li>Define a type class called <code>Describable</code> that can generate small and lengthy (<code>String</code>) descriptions of values of some type.</li>
-<li>Create a <code>Weapon</code> data type to denote different types of weapons.</li>
-<li>Create an instance of <code>Describable</code> for the <code>Weapon</code> data type.</li>
-</ol>
-</section>
-<section id="effects" class="slide level1">
-<h1>Effects</h1>
-<h3 id="or-how-to-get-in-trouble-fast.">Or, how to get in trouble <em>fast</em>.</h3>
+<h2 id="events---example">Events - Example</h2>
+<ul>
+<li>Here's an example of the event monitor in the example app. It registers a handler and asynchronously polls a filter for the <code>CountSet</code> event, updating the React component's state.</li>
+<li>Since the return value of the handler is always <code>ContinueEvent</code>, this poll never terminates.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">monitorCount ::</span> <span class="dt">R.ComponentDidMount</span> <span class="dt">CountStateProps</span> <span class="dt">CountState</span> (<span class="ot">eth ::</span> <span class="dt">ETH</span> <span class="fu">|</span> eff)
+monitorCount this <span class="fu">=</span> void <span class="fu">$</span> <span class="kw">do</span>
+  props <span class="ot">&lt;-</span> R.getProps this
+  launchAff <span class="kw">do</span>
+    void <span class="fu">$</span> runWeb3 metamask <span class="fu">$</span>
+      event config<span class="fu">.</span>simpleStorageAddress <span class="fu">$</span> \(<span class="dt">SimpleStorage.CountSet</span> cs) <span class="ot">-&gt;</span> <span class="kw">do</span>
+      _ <span class="ot">&lt;-</span> liftEff <span class="fu">&lt;&lt;&lt;</span> R.transformState this <span class="fu">$</span> _{currentCount<span class="fu">=</span> show cs<span class="fu">.</span>_count}
+      pure <span class="dt">ContinueEvent</span></code></pre></div>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Debug.Trace</span>
-
-main <span class="fu">=</span> trace <span class="st">&quot;Hello World!&quot;</span></code></pre></div>
-</section>
-<section class="slide level1">
-
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Debug.Trace</span>
-
-main <span class="fu">=</span> <span class="kw">do</span>
-  trace <span class="st">&quot;Hello World!&quot;</span>
-
-  trace <span class="st">&quot;Bye World!&quot;</span></code></pre></div>
-</section>
-<section id="exercise-set-12" class="slide level1">
-<h1>Exercise Set 12</h1>
-<ol type="1">
-<li>Study the <code>Main</code> module to see how it uses effects to print out a description.</li>
-</ol>
-</section>
-<section id="scary-sounding-things" class="slide level1">
-<h1>Scary Sounding Things</h1>
-<h3 id="monadic-zygohistomorphic-prepromorphisms...">Monadic zygohistomorphic prepromorphisms...</h3>
-<h2 id="wtf">WTF?!?!!</h2>
-</section>
-<section id="scary-sounding-things-1" class="slide level1">
-<h1>Scary Sounding Things</h1>
-<h3 id="lets-play-a-game-give-your-friend-a-birthday-present-that-shell-adore.">Let's play a game: give your friend a birthday present that she'll adore.</h3>
-</section>
-<section id="scary-sounding-things-2" class="slide level1">
-<h1>Scary Sounding Things</h1>
-<h3 id="the-rules-of-the-game.">The rules of the game.</h3>
-<p><strong>Rule 1</strong>: If something is inside a box, you may change it to anything else and the result will still be inside the box.</p>
-<p><strong>Rule 2</strong>: If something is not inside a box, you can pack it into a box.</p>
-<p><strong>Rule 3</strong>: If something is packed inside a box which is packed inside another box, you can replace that with a single box containing that thing.</p>
-</section>
-<section id="scary-sounding-things-3" class="slide level1">
-<h1>Scary Sounding Things</h1>
-<h3 id="your-inventory.">Your inventory.</h3>
-<p><strong>Item 1</strong>: You have Ripley, a Chihuaha mutt who can magically change a lump of coal into a beautiful present that your friend will like.</p>
-<p><strong>Item 2</strong>: You have a box containing a box containing a lump of coal.</p>
-<p>Which rules should you apply to create a birthday present your friend will adore???</p>
-</section>
-<section id="scary-sounding-things-4" class="slide level1">
-<h1>Scary Sounding Things</h1>
-<h3 id="the-rules-of-the-game-redux.">The rules of the game, redux.</h3>
-<p><strong>Rule 1</strong>: If something is inside a box, you may change it to anything else and the result will still be inside the box. <code>(a -&gt; b) -&gt; f a -&gt; f b</code></p>
-<p><strong>Rule 2</strong>: If something is not inside a box, you can pack it into a box. <code>a -&gt; f a</code></p>
-<p><strong>Rule 3</strong>: If something is packed inside a box which is packed inside another box, you can replace that with a single box containing that thing. <code>f (f a) -&gt; f a</code></p>
-</section>
-<section id="scary-sounding-things-5" class="slide level1">
-<h1>Scary Sounding Things</h1>
-<h3 id="the-rules-of-the-game-redux-redux.">The rules of the game, redux redux.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">fmap<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b <span class="co">-- AKA (&lt;$&gt;)</span>
-
-pure<span class="ot"> ::</span> a <span class="ot">-&gt;</span> f a               <span class="co">-- AKA return</span>
-
-<span class="ot">join ::</span> f (f a) <span class="ot">-&gt;</span> f a
-
-<span class="co">-- bind AKA (&gt;&gt;=) = \fa f -&gt; join (fmap f fa)</span></code></pre></div>
-</section>
-<section id="omg-a-monad-run-in-terror" class="slide level1">
-<h1>OMG a <strong>monad</strong>, run in terror!!!!!</h1>
-</section>
-<section id="nah-just-kidding" class="slide level1">
-<h1>Nah, just kidding</h1>
-<h2 id="scary-sounding-things-give-you-rewrite-rules-you-can-use-to-manipulate-the-types-into-the-form-you-require.">Scary sounding things give you <strong>rewrite rules</strong> you can use to <strong>manipulate the types</strong> into the form you require.</h2>
-</section>
-<section id="the-scary-sounding-names-dont-matter-at-all" class="slide level1">
-<h1>The scary sounding names <strong>don't matter</strong> at all</h1>
-</section>
-<section id="exercise-set-13" class="slide level1">
-<h1>Exercise Set 13</h1>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Evitacilppa</span> f <span class="kw">where</span>
-<span class="ot">  erup ::</span> forall a<span class="fu">.</span> a <span class="ot">-&gt;</span> f a
-
-<span class="ot">  pa ::</span> forall a b<span class="fu">.</span> f (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b</code></pre></div>
-<ol type="1">
-<li>You are given <code>f Int</code> and <code>Int</code>, for some <code>Evitacilppa f</code>. If you have a function:</li>
-</ol>
-<p><code>add :: Int -&gt; Int -&gt; Int</code></p>
-<p>which &quot;rewrite rules&quot; do you need to use so that you can apply the <code>add</code> function to the two numbers?</p>
-</section>
-<section id="lets-finish-our-game" class="slide level1">
-<h1>Let's Finish Our Game!</h1>
-<h3 id="enough-math-already-plz">Enough math already plz!!!</h3>
-</section>
-<section id="the-soul-of-an-rpg" class="slide level1">
-<h1>The Soul of an RPG</h1>
-<h3 id="or-the-types-anyway.">Or the types, anyway.</h3>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Game</span> s i <span class="fu">=</span> {
-<span class="ot">  initial  ::</span> s,
-<span class="ot">  describe ::</span> s <span class="ot">-&gt;</span> <span class="dt">String</span>,
-<span class="ot">  parse    ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Either</span> <span class="dt">String</span> i,
-<span class="ot">  update   ::</span> s <span class="ot">-&gt;</span> i <span class="ot">-&gt;</span> <span class="dt">Either</span> <span class="dt">String</span> s }
-
-<span class="ot">runGame ::</span> forall s i<span class="fu">.</span> <span class="dt">Game</span> s i <span class="ot">-&gt;</span> <span class="dt">Eff</span> (<span class="ot">game ::</span> <span class="dt">GAME</span>) <span class="dt">Unit</span>
-runGame g <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
-</section>
-<section id="on-your-marks-get-set-go" class="slide level1">
-<h1>On Your Marks, Get Set, Go!</h1>
-</section>
-<section id="thank-you" class="slide level1">
-<h1>THANK YOU!</h1>
-<h3 id="john-a.-de-goes-â-jdegoes">John A. De Goes â€” <span class="citation" data-cites="jdegoes">@jdegoes</span></h3>
+<center>
+Fin
+</center>
 </section>
 <section class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Not really, $%#@&amp;!!<a href="#/fnref1">↩</a></p></li>
-<li id="fn2"><p>Not really, $%#@&amp;!!<a href="#/fnref2">↩</a></p></li>
-<li id="fn3"><p>They get their name from an easy way you can use to compute the size of these sets (hint: product = multiplication).<a href="#/fnref3">↩</a></p></li>
-<li id="fn4"><p><em>De</em>construction, of course! AKA <em>pattern matching</em>.<a href="#/fnref4">↩</a></p></li>
-<li id="fn5"><p>They get their name from an easy way you can use to compute the size of these sets (hint: sum = addition).<a href="#/fnref5">↩</a></p></li>
-<li id="fn6"><p>Record types are represented using native Javascript objects.<a href="#/fnref6">↩</a></p></li>
-<li id="fn7"><p>Not <em>really</em>, of course: functions in PureScript are always functions <em>from</em> one set <em>to</em> another set.<a href="#/fnref7">↩</a></p></li>
-<li id="fn8"><p>THERE BE DRAGONZ HERE!!!<a href="#/fnref8">↩</a></p></li>
-<li id="fn9"><p>AKA <code>null</code>, the FP way.<a href="#/fnref9">↩</a></p></li>
-<li id="fn10"><p>AKA sometimes it's just too damn hard to name stuff!<a href="#/fnref10">↩</a></p></li>
+<li id="fn1"><p>Gas solves the non-termination problem<a href="#/fnref1">↩</a></p></li>
+<li id="fn2"><p>There are a few other boiler plate type declarations, but this is pretty much it.<a href="#/fnref2">↩</a></p></li>
 </ol>
 </section>
     </div>

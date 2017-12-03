@@ -1,12 +1,10 @@
-build-lists: true
-autoscale: true
-
 # Introduction to purescript-web3
+
 ### Martin Allen, FOAM
 
 ---
 
-# TOC
+# plan of the talk
 
 * ethereum
 * purescript
@@ -14,8 +12,7 @@ autoscale: true
 
 ---
 
-# ethereum
-
+## ethereum
 - second most popupular blockchain and cryptocurrency
 - turing-complete[^0] statemachine (EVM)
 - allows consensus around execution of smart contracts
@@ -24,26 +21,25 @@ autoscale: true
 
 ---
 
-![100%](images/txs.png)
+![Ethereum transactions over time](images/txs.png)
 
 source: etherscan.io as of 12/2/2017
 
 ---
 
-![100%](images/addresses.png)
+![Unique transactions over time](images/addresses.png)
 
 source: etherscan.io as of 12/2/2017
 
 ---
 
-![100%](images/marketcap.png)
+![Ethereum market cap over time](images/marketcap.png)
 
 source: etherscan.io as of 12/2/2017
 
 ---
 
-# solidity
-
+## solidity
 - javascript like syntax
 - special blockchain, crypto and signature-recovery primitives
 - types for EVM primitives such as `uint48`
@@ -53,22 +49,18 @@ source: etherscan.io as of 12/2/2017
 
 ```javascript
 contract GreedyStorage is owned {
-
   uint public m; // automatically generate getM()
-  
   function increase (uint n) onlyOwner returns (uint) 
   {
      m = m + n;
      return m;
   }
-  
   function override (uint n) payable 
   {
     require(msg.value > 100000);  // this is the price
     m = n;
     log0(bytes32(msg.sender));
   }
-  
 }
 ```
 
@@ -96,16 +88,18 @@ so for `GreedyStorage` we get
 
 ---
 
-# typesafety (on-chain)
+## typesafety (on-chain)
 - work underway for strongly typed languages targeting EVM
 - typesafe EVM language wouldn't necessarily have prevented infamous bugs. We'd need session types or similar.
 - fundamental problem is `call()`-out from turingcomplete executable to turingcomplete executable. Types are not preserved on EVM.
 
 ---
 
-# typesafety (off-chain)
-- prevent catastrophes for
-  - encoding errors
+## typesafety (off-chain)
+
+Prevent catastrophes for
+
+- encoding errors
 
 ---
 
@@ -120,10 +114,12 @@ REX token sale (7/31/2017)
 
 ---
 
-# typesafety (off-chain)
-- prevent catastrophes for
-  - encoding errors
-  - migrations
+## typesafety (off-chain)
+
+Prevent catastrophes for
+
+- encoding errors
+- migrations
 
 ---
 
@@ -137,6 +133,7 @@ contract A {
 ```
 
 ---
+
 ```javascript
 contract A {
   int n;
@@ -148,15 +145,10 @@ contract A {
 
 ---
 
+## typesafety (off-chain)
+Convenience
 
----
-
-# typesafety (off-chain)
-- prevent catastrophes for
-  - encoding errors
-  - migrations
-- convenience
-  - CD
-  - compile time errors
+- CD/CI
+- compile time errors
 
 ---
