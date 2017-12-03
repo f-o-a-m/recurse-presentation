@@ -2,7 +2,7 @@
 
 THEME ?= "white"
 
-all: pandoc
+all: install pandoc
 
 install:
 	stack install pandoc

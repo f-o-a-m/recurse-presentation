@@ -3,7 +3,7 @@ language: r
 install:
   make pandoc
 script:
-  - npm -s test
+  make pandoc
 
 deploy:
   provider: pages
