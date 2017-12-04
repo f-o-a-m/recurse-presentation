@@ -1,6 +1,6 @@
 .PHONY: all install git pandoc
 
-THEME ?= "white"
+THEME ?= "simple"
 TRANSITION ?= "none"
 
 all: install pandoc
