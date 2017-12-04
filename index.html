@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <title></title>
+  <meta name="author" content="Martin Allen">
+  <title>Introdution to purescript-web3</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -46,7 +47,7 @@ code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Ann
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
-  <link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
@@ -63,11 +64,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <div class="reveal">
     <div class="slides">
 
-
-<section id="introduction-to-purescript-web3" class="slide level1">
-<h1>Introduction to purescript-web3</h1>
-<h3 id="martin-allen-foam">Martin Allen, FOAM</h3>
+<section>
+  <h1 class="title">Introdution to purescript-web3</h1>
+  <p class="author">Martin Allen</p>
+  <p class="date">December 4, 2017</p>
 </section>
+
 <section id="plan-of-the-talk" class="slide level1">
 <h1>Plan of the talk</h1>
 <ul>
@@ -88,23 +90,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <section class="slide level1">
 
 <figure>
-<img src="images/txs.png" alt="Ethereum transactions over time" /><figcaption>Ethereum transactions over time</figcaption>
+<img src="images/txs.png" alt="source: etherscan.io as of 12/2/2017" /><figcaption>source: etherscan.io as of 12/2/2017</figcaption>
 </figure>
-<p>source: etherscan.io as of 12/2/2017</p>
 </section>
 <section class="slide level1">
 
 <figure>
-<img src="images/addresses.png" alt="Unique transactions over time" /><figcaption>Unique transactions over time</figcaption>
+<img src="images/addresses.png" alt="source: etherscan.io as of 12/2/2017" /><figcaption>source: etherscan.io as of 12/2/2017</figcaption>
 </figure>
-<p>source: etherscan.io as of 12/2/2017</p>
 </section>
 <section class="slide level1">
 
 <figure>
-<img src="images/marketcap.png" alt="Ethereum market cap over time" /><figcaption>Ethereum market cap over time</figcaption>
+<img src="images/marketcap.png" alt="source: etherscan.io as of 12/2/2017" /><figcaption>source: etherscan.io as of 12/2/2017</figcaption>
 </figure>
-<p>source: etherscan.io as of 12/2/2017</p>
 </section>
 <section class="slide level1">
 
@@ -166,32 +165,34 @@ selector <span class="fu">=</span> take <span class="dv">8</span> <span class="f
 <h2 id="typesafety-off-chain">Typesafety (off-chain)</h2>
 <h3 id="prevent-catastrophes">Prevent catastrophes</h3>
 <ul>
-<li><p>Encoding errors</p></li>
-<li><p>Improper value transfer</p></li>
-<li><p>Function/argument mismatch</p></li>
+<li>Encoding errors</li>
+<li>Improper value transfer</li>
+<li>Function/argument mismatch</li>
 </ul>
-<h2 id="conveniences">Conveniences</h2>
+<h3 id="conveniences">Conveniences</h3>
 <ul>
-<li><p>Migrations / CD-CI</p></li>
+<li>Migrations / CD-CI</li>
 <li>Type safety</li>
-<li><hr /></li>
 </ul>
-<blockquote>
-<p>The token sale kicked off on schedule at 4:00pm UTC. About 20 minutes in, we realized something was awry with the contract transfer address. Whilst generating the contract bytes for deployment, a mistake was made defining the constructor parameters. Instead of a quoted string for an address, a Javascript hex string was used, i.e: “0x03e4B00B607d09811b0Fa61Cf636a6460861939F” This resulted in an address in the byte code that looked very much like the actual address, but was not, i.e: “0x3e4b00b607d0980668ca6e50201576b00000000.” This address was incorrectly verified before deployment due to its similarities.</p>
-</blockquote>
-<p>REX token sale (7/31/2017)</p>
 </section>
 <section class="slide level1">
 
 <figure>
-<img src="images/rex.png" alt="100%" /><figcaption>100%</figcaption>
+<img src="images/rex1.png" alt="REX token sale 7/31/2017" /><figcaption>REX token sale 7/31/2017</figcaption>
+</figure>
+</section>
+<section class="slide level1">
+
+<figure>
+<img src="images/rex2.png" alt="Balance of invalid account" /><figcaption>Balance of invalid account</figcaption>
 </figure>
 </section>
 <section id="purescript" class="slide level1">
 <h1>Purescript</h1>
-<blockquote>
-<p>I started PureScript because the language I wanted on the front end didn't exist, and that's still why I work on it and use it. I want type classes, and functional dependencies, and higher kinded types, and rank N types, and various other things in my type system. And I want predictable code generation, and a minimal language and standard library. That combination just didn't exist when I started on PureScript. <span class="citation" data-cites="paf31">@paf31</span></p>
-</blockquote>
+<figure>
+<img src="images/paf31.png" alt="@paf31" /><figcaption><span class="citation" data-cites="paf31">@paf31</span></figcaption>
+</figure>
+<p>See Phil's article <a href="http://blog.functorial.com/posts/2017-08-09-Why-You-Should-Use-PureScript.html">Why you should use purescript?</a> for some of the highlights</p>
 </section>
 <section class="slide level1">
 
@@ -202,6 +203,10 @@ selector <span class="fu">=</span> take <span class="dv">8</span> <span class="f
 <li>Pure, extensible effects (may go away)</li>
 <li>Prism/Lens/Traversable</li>
 </ul>
+</section>
+<section class="slide level1">
+
+<h2 id="a-haskell-programmers-solution-to-the-javascript-problem-1">A haskell programmer's solution to the javascript problem</h2>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">MyProd</span> <span class="fu">=</span> <span class="dt">MyProd</span> <span class="dt">Int</span> <span class="dt">String</span>
 
 <span class="kw">data</span> <span class="dt">MySum</span> <span class="fu">=</span> <span class="dt">MyInt</span> <span class="dt">Int</span> 
@@ -217,7 +222,7 @@ selector <span class="fu">=</span> take <span class="dv">8</span> <span class="f
 </section>
 <section class="slide level1">
 
-<h2 id="a-haskell-programmers-solution-to-the-javascript-problem-1">A haskell programmer's solution to the javascript problem</h2>
+<h2 id="a-haskell-programmers-solution-to-the-javascript-problem-2">A haskell programmer's solution to the javascript problem</h2>
 <ul>
 <li>Compiles to clean (human readable) JS code</li>
 <li>Easy FFI, use existing js libraries whenever makes sense</li>
@@ -227,9 +232,17 @@ selector <span class="fu">=</span> take <span class="dv">8</span> <span class="f
 <section class="slide level1">
 
 <h2 id="comparison-with">Comparison with</h2>
+<h3 id="elm"><code>elm</code></h3>
 <ul>
-<li><p><code>elm</code> <em>-</em> Functional, row types <em>-</em> Arguably easier to get started <em>-</em> Weaker type system (effects, polymorphism, typeclasses)</p></li>
-<li><p><code>ghcjs</code> <em>-</em> Make use of existing haskell ecosystem <em>-</em> Laziness, garbage collection, shared code <em>-</em> Heavy (needs runtime) --- ---</p></li>
+<li>Functional, row types</li>
+<li>Arguably easier to get started</li>
+<li>Weaker type system (effects, polymorphism, typeclasses)</li>
+</ul>
+<h3 id="ghcjs"><code>ghcjs</code></h3>
+<ul>
+<li>Make use of existing haskell ecosystem</li>
+<li>Laziness, garbage collection, shared code</li>
+<li>Heavy (needs runtime)</li>
 </ul>
 </section>
 <section id="purescript-web3" class="slide level1">
@@ -264,56 +277,68 @@ selector <span class="fu">=</span> take <span class="dv">8</span> <span class="f
 <ul>
 <li>Purescript does not as of yet have type level naturals</li>
 <li>Luckily we don't need infinitely many</li>
-<li><code>Network.Ethereum.Web3.Solidity.Size</code></li>
-<li><code>D0</code> ... <code>D9</code> and <code>(:&amp;) :: Type -&gt; Type -&gt; Type</code></li>
-<li><code>Z :: Type</code>, <code>S :: Type -&gt; Type</code></li>
-<li><code>class KnownSize s</code>, <code>class KnownNat n</code></li>
-<li><code>class KnownSize n &lt;= ByteSize n</code></li>
-<li><code>class KnownSize n &lt;= IntSize n</code></li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Network.Ethereum.Web3.Solidity.Size</span> <span class="kw">where</span>
+
+<span class="kw">data</span> <span class="dt">D0</span> 
+<span class="fu">...</span> 
+<span class="kw">data</span> <span class="dt">D9</span>
+<span class="kw">data</span><span class="ot"> (:&amp;) ::</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span>
+<span class="kw">data</span> <span class="dt">Z</span><span class="ot"> ::</span> <span class="dt">Type</span>
+<span class="kw">data</span> <span class="dt">S</span><span class="ot"> ::</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span>
+
+<span class="kw">class</span> <span class="dt">KnownSize</span> s
+<span class="kw">class</span> <span class="dt">KnownNat</span> n
+<span class="kw">class</span> <span class="dt">KnownSize</span> n <span class="fu">&lt;=</span> <span class="dt">ByteSize</span> n
+<span class="kw">class</span> <span class="dt">KnownSize</span> n <span class="fu">&lt;=</span> <span class="dt">IntSize</span> n
+
+<span class="kw">type</span> <span class="dt">N4</span> <span class="fu">=</span> <span class="dt">S</span> (<span class="dt">S</span> (<span class="dt">S</span> (<span class="dt">S</span> <span class="dt">Z</span>)))</code></pre></div>
 </section>
 <section class="slide level1">
 
 <h3 id="sized-ints">Sized Ints</h3>
+<ul>
+<li>js doesn't have unbounded integers (doesn't even have integers!)</li>
+<li>need something like <code>BigNumber</code></li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">UIntN</span> n <span class="fu">=</span> <span class="dt">UIntN</span> <span class="dt">BigNumber</span>
 
-<span class="ot">uIntNFromBigNumber ::</span> 
-  forall n <span class="fu">.</span> 
-     <span class="dt">KnownSize</span> n 
-  <span class="ot">=&gt;</span> <span class="dt">BigNumber</span> 
-  <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">UIntN</span> n)
+<span class="ot">uIntNFromBigNumber ::</span> forall n <span class="fu">.</span> <span class="dt">KnownSize</span> n 
+                   <span class="ot">=&gt;</span> <span class="dt">BigNumber</span> 
+                   <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">UIntN</span> n)
 
 <span class="kw">type</span> <span class="dt">UInt</span> <span class="fu">=</span> <span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>)</code></pre></div>
 </section>
 <section class="slide level1">
 
-<h3 id="vectors">Vectors</h3>
-<ul>
-<li>Purescript makes it pretty easy to implement length indexed vectors</li>
-</ul>
+<h3 id="length-indexed-vectors">Length Indexed Vectors</h3>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Vector</span> n a <span class="fu">=</span> <span class="dt">Vector</span> (<span class="dt">Array</span> a)
 
 <span class="ot">nilVector ::</span> forall a <span class="fu">.</span> <span class="dt">Vector</span> <span class="dt">Z</span> a
 nilVector <span class="fu">=</span> <span class="dt">Vector</span> mempty
 
-<span class="ot">vCons ::</span> 
-  forall a n <span class="fu">.</span> 
-     a 
-  <span class="ot">-&gt;</span> <span class="dt">Vector</span> n a 
-  <span class="ot">-&gt;</span> <span class="dt">Vector</span> (<span class="dt">S</span> n) a
+<span class="ot">vCons ::</span> forall a n <span class="fu">.</span> a 
+      <span class="ot">-&gt;</span> <span class="dt">Vector</span> n a 
+      <span class="ot">-&gt;</span> <span class="dt">Vector</span> (<span class="dt">S</span> n) a
 vCons a (<span class="dt">Vector</span> as) <span class="fu">=</span> <span class="dt">Vector</span> (a <span class="fu">:</span> as)
 
-<span class="ot">toVector ::</span> 
-  forall a n <span class="fu">.</span> 
-     <span class="dt">KnownNat</span> n 
-  <span class="ot">=&gt;</span> <span class="dt">Array</span> a 
-  <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">Vector</span> n a)</code></pre></div>
+<span class="kw">infixr</span> <span class="dv">6</span> vCons as <span class="fu">:&lt;</span>
+
+<span class="ot">toVector ::</span> forall a n <span class="fu">.</span> <span class="dt">KnownNat</span> n 
+         <span class="ot">=&gt;</span> <span class="dt">Array</span> a 
+         <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">Vector</span> n a)
+toVector as <span class="fu">=</span> <span class="kw">if</span> natVal (<span class="dt">Proxy</span><span class="ot"> ::</span> <span class="dt">Proxy</span> n) <span class="fu">/=</span> A.length as
+                 <span class="kw">then</span> <span class="dt">Nothing</span>
+                 <span class="kw">else</span> <span class="dt">Just</span> (<span class="dt">Vector</span> as)
+
+<span class="ot">bools ::</span> <span class="dt">Vector</span> <span class="dt">N3</span> <span class="dt">Boolean</span>
+bools <span class="fu">=</span> true <span class="fu">:&lt;</span> false <span class="fu">:&lt;</span> true <span class="fu">:&lt;</span> nilVector</code></pre></div>
 </section>
 <section class="slide level1">
 
 <h3 id="tuples">Tuples</h3>
 <ul>
-<li>The EVM is a stack based virtual machine with a maximum depth of 16. Not very impressive, but limits the possible tuple sizes.</li>
+<li>The EVM is a stack based virtual machine with a maximum depth of 16. Limits the possible tuple sizes.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tuple0</span> <span class="fu">=</span> <span class="dt">Tuple0</span>
 
@@ -353,9 +378,9 @@ vCons a (<span class="dt">Vector</span> as) <span class="fu">=</span> <span clas
 
 <h2 id="tuples-1">Tuples</h2>
 <ul>
-<li>All Solidity functions accept and return tuples</li>
-<li>Events are emitted as tuples, though not as straight forward to handle</li>
-<li>Encoding and Decoding implemented &quot;generically&quot;</li>
+<li>All Solidity functions accept and return tuples.</li>
+<li>Events are emitted as tuples, though not as straight forward to handle.</li>
+<li>Encoding and Decoding implemented &quot;generically&quot;.</li>
 </ul>
 </section>
 <section class="slide level1">
@@ -370,19 +395,28 @@ vCons a (<span class="dt">Vector</span> as) <span class="fu">=</span> <span clas
 
 from (<span class="dt">Tuple3</span> <span class="dt">Bool</span> <span class="dt">String</span> (<span class="dt">UInt</span> <span class="dt">D8</span>)) <span class="ot">::</span>
   <span class="dt">Constructor</span> <span class="st">&quot;Tuple3&quot;</span> (<span class="dt">Product</span> (<span class="dt">Argument</span> <span class="dt">Bool</span>) (<span class="dt">Product</span> (<span class="dt">Argument</span> <span class="dt">String</span>) (<span class="dt">Argument</span> <span class="dt">UInt</span> <span class="dt">D8</span>))) </code></pre></div>
+</section>
+<section class="slide level1">
+
+<h2 id="generics-primer-advanced-1">Generics Primer (Advanced)</h2>
 <ul>
 <li>Compiler implements generic decompositions for us, so we can use them for free.</li>
 <li>We can inductively build up generic types to have a certain property, such as <code>ABIEncode</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span><span class="ot"> genericEncodeBase ::</span> <span class="dt">ABIEncode</span> a <span class="ot">=&gt;</span> <span class="dt">GenericABIEncode</span> (<span class="dt">Argument</span> a)
-<span class="kw">instance</span><span class="ot"> genericEncodeInductive ::</span> (<span class="dt">ABIEncode</span> a, <span class="dt">GenericABIEncode</span> b) <span class="ot">=&gt;</span> <span class="dt">GenericABIEncode</span> (<span class="dt">Product</span> (<span class="dt">Argument</span> a) b)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span><span class="ot"> genericEncodeBase ::</span> <span class="dt">ABIEncode</span> a 
+                           <span class="ot">=&gt;</span> <span class="dt">GenericABIEncode</span> (<span class="dt">Argument</span> a)
+
+<span class="kw">instance</span><span class="ot"> genericEncodeInductive ::</span> ( <span class="dt">ABIEncode</span> a
+                                   , <span class="dt">GenericABIEncode</span> b
+                                   ) 
+               <span class="ot">=&gt;</span> <span class="dt">GenericABIEncode</span> (<span class="dt">Product</span> (<span class="dt">Argument</span> a) b)</code></pre></div>
 </section>
 <section class="slide level1">
 
 <h2 id="generics">Generics</h2>
 <ul>
 <li>enables extremely local reasoning, building up more complicated expressions from smaller ones whose correctness is easier to prove.</li>
-<li>&quot;generics&quot; code is extremely reusable.</li>
+<li>code utilizing &quot;generics&quot; is extremely reusable.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">genericEncode ::</span>
   forall a rep <span class="fu">.</span>
@@ -397,7 +431,7 @@ genericABIEncode <span class="fu">=</span> genericToDataBuilder <span class="fu"
 <h2 id="web3-api">Web3 API</h2>
 <ul>
 <li>The Web3 API is a set of RPC methods that the ethereum client knows about</li>
-<li>There are a lot, the type signatures can serve as a sort of documentation</li>
+<li>There are a lot, the type signatures serve as a sort of <a href="https://pursuit.purescript.org/packages/purescript-web3/0.9.0/docs/Network.Ethereum.Web3.Api">documentation</a></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eth_sendTransaction ::</span> forall p e <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
                     <span class="ot">=&gt;</span> <span class="dt">TransactionOptions</span> 
@@ -419,13 +453,11 @@ genericABIEncode <span class="fu">=</span> genericToDataBuilder <span class="fu"
 <ul>
 <li>Implementation of the client portion heavily inspired by the <code>hs-web3</code> implementation.</li>
 <li><p>How easy is it to add new endpoints as they are released?</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eth_sendTransaction ::</span> forall p e
-                 <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p
-                <span class="ot">=&gt;</span> <span class="dt">TransactionOptions</span>
-                <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
-eth_sendTransaction opts <span class="fu">=</span>
-  unsafeCoerceWeb3 <span class="fu">$</span> remote <span class="st">&quot;eth_sendTransaction&quot;</span><span class="ot"> opts ::</span> <span class="dt">Web3</span> p () <span class="dt">HexString</span></code></pre></div></li>
-<li><p>Pretty easy!</p></li>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">signMessage ::</span> forall p e <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p
+        <span class="ot">=&gt;</span> <span class="dt">Address</span> <span class="co">-- unlocked account</span>
+        <span class="ot">-&gt;</span> <span class="dt">HexString</span> <span class="co">-- message to sign</span>
+        <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span> <span class="co">-- signed message</span></code></pre></div>
+<p><a href="https://github.com/f-o-a-m/purescript-web3/blob/master/src/Network/Ethereum/Web3/Api.purs">Pretty easy!</a></p></li>
 </ul>
 </section>
 <section class="slide level1">
@@ -434,8 +466,8 @@ eth_sendTransaction opts <span class="fu">=</span>
 <p>You will be able to use <code>purescript-web3</code> without knowing how it works. This means:</p>
 <ol type="1">
 <li>Calling contract methods, listening for events, querying blockchain metadata, full web3 api implementation.</li>
-<li>Interacting with metamask.</li>
-<li>Easily generate a small client library for every contract.</li>
+<li>Integrating with metamask.</li>
+<li>Easily generate a simple client library for every contract.</li>
 </ol>
 </section>
 <section class="slide level1">
@@ -443,6 +475,7 @@ eth_sendTransaction opts <span class="fu">=</span>
 <h2 id="generator---simple-storage">Generator - Simple Storage</h2>
 <p>Simple Storage allows us to change a <code>uint256</code>, query that state, and listen for updates to that state.</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">contract SimpleStorage <span class="op">{</span>
+   
     uint <span class="kw">public</span> count<span class="op">;</span>
 
     event <span class="at">CountSet</span>(uint _count)<span class="op">;</span>
@@ -451,6 +484,7 @@ eth_sendTransaction opts <span class="fu">=</span>
         count <span class="op">=</span> _count<span class="op">;</span>
         <span class="at">CountSet</span>(_count)<span class="op">;</span>
     <span class="op">}</span>
+
 <span class="op">}</span></code></pre></div>
 </section>
 <section class="slide level1">
@@ -458,16 +492,16 @@ eth_sendTransaction opts <span class="fu">=</span>
 <h2 id="generator---simple-storage-1">Generator - Simple Storage</h2>
 <p>Here is the client library generated which is generated from the ABI <a href="#/fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">count ::</span> forall e p <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
-  <span class="ot">=&gt;</span> <span class="dt">Address</span> 
-  <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> 
-  <span class="ot">-&gt;</span> <span class="dt">CallMode</span> 
-  <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e (<span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>))
+      <span class="ot">=&gt;</span> <span class="dt">Address</span> 
+      <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> 
+      <span class="ot">-&gt;</span> <span class="dt">CallMode</span> 
+      <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e (<span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>))
 
 <span class="ot">setCount ::</span> forall e p <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
-  <span class="ot">=&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> 
-  <span class="ot">-&gt;</span> <span class="dt">Address</span> 
-  <span class="ot">-&gt;</span> <span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>) 
-  <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
+         <span class="ot">=&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> 
+         <span class="ot">-&gt;</span> <span class="dt">Address</span> 
+         <span class="ot">-&gt;</span> <span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>) 
+         <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
 
 <span class="kw">newtype</span> <span class="dt">CountSet</span> <span class="fu">=</span> 
   <span class="dt">CountSet</span> {<span class="ot"> _count ::</span> <span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>) }</code></pre></div>
@@ -489,27 +523,32 @@ eth_sendTransaction opts <span class="fu">=</span>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">SetCountFn</span> <span class="fu">=</span> <span class="dt">Tagged</span> (<span class="dt">SProxy</span> <span class="st">&quot;setCount(uint256)&quot;</span>) (<span class="dt">Tuple1</span> (<span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>)))
 
 <span class="ot">setCount ::</span> forall e p <span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p 
-  <span class="ot">=&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> 
-  <span class="ot">-&gt;</span> <span class="dt">Address</span> 
-  <span class="ot">-&gt;</span> <span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>) 
-  <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
+         <span class="ot">=&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> 
+         <span class="ot">-&gt;</span> <span class="dt">Address</span> 
+         <span class="ot">-&gt;</span> <span class="dt">UIntN</span> (<span class="dt">D2</span> <span class="fu">:&amp;</span> <span class="dt">D5</span> <span class="fu">:&amp;</span> <span class="dt">D6</span>) 
+         <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>
 setCount x0 x1 x2 <span class="fu">=</span> sendTx x0 x1 noPay ((tagged <span class="fu">$</span> <span class="dt">Tuple1</span> x2)<span class="ot"> ::</span> <span class="dt">SetCountFn</span>)</code></pre></div>
 <p>Notice the <code>noPay</code></p>
 </section>
 <section class="slide level1">
 
 <h2 id="generator---how-does-it-work-1">Generator - How does it work</h2>
-<p>All templated transaction functions are run with the <code>sendTx</code> method:</p>
+<ul>
+<li>All templated transaction functions are run with the <code>sendTx</code> method:</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">TxMethod</span> (<span class="ot">selector ::</span> <span class="dt">Symbol</span>) a <span class="kw">where</span>
 <span class="ot">    sendTx ::</span> forall p e u<span class="fu">.</span>
               <span class="dt">IsAsyncProvider</span> p
       <span class="ot">=&gt;</span> <span class="dt">IsSymbol</span> selector
       <span class="ot">=&gt;</span> <span class="dt">EtherUnit</span> u
-      <span class="ot">=&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span> <span class="co">-- Contract address</span>
-      <span class="ot">-&gt;</span> <span class="dt">Address</span>       <span class="co">-- From address</span>
-      <span class="ot">-&gt;</span> u             <span class="co">-- paymentValue in some denomination</span>
+      <span class="ot">=&gt;</span> <span class="dt">Maybe</span> <span class="dt">Address</span>              <span class="co">-- Contract address</span>
+      <span class="ot">-&gt;</span> <span class="dt">Address</span>                    <span class="co">-- From address</span>
+      <span class="ot">-&gt;</span> u                          <span class="co">-- paymentValue </span>
       <span class="ot">-&gt;</span> <span class="dt">Tagged</span> (<span class="dt">SProxy</span> selector) a <span class="co">-- Method data</span>
       <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e <span class="dt">HexString</span>         <span class="co">-- &#39;Web3&#39; wrapped tx hash</span></code></pre></div>
+<ul>
+<li><code>call</code> methods are similar, but with a return type</li>
+</ul>
 </section>
 <section class="slide level1">
 
@@ -519,11 +558,11 @@ setCount x0 x1 x2 <span class="fu">=</span> sendTx x0 x1 noPay ((tagged <span cl
 <li>All events can be handled with the <code>event</code> method, which similarly defined in <code>hs-web3</code></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">event ::</span> forall p e a i ni<span class="fu">.</span> <span class="dt">IsAsyncProvider</span> p
-       <span class="ot">=&gt;</span> <span class="dt">DecodeEvent</span> i ni a
-       <span class="ot">=&gt;</span> <span class="dt">EventFilter</span> a
-       <span class="ot">=&gt;</span> <span class="dt">Address</span>
-       <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">ReaderT</span> <span class="dt">Change</span> (<span class="dt">Web3</span> p e) <span class="dt">EventAction</span>)
-       <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e (<span class="dt">Fiber</span> (<span class="ot">eth ::</span> <span class="dt">ETH</span> <span class="fu">|</span> e) <span class="dt">Unit</span>)</code></pre></div>
+      <span class="ot">=&gt;</span> <span class="dt">DecodeEvent</span> i ni a
+      <span class="ot">=&gt;</span> <span class="dt">EventFilter</span> a
+      <span class="ot">=&gt;</span> <span class="dt">Address</span>
+      <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">ReaderT</span> <span class="dt">Change</span> (<span class="dt">Web3</span> p e) <span class="dt">EventAction</span>)
+      <span class="ot">-&gt;</span> <span class="dt">Web3</span> p e (<span class="dt">Fiber</span> (<span class="ot">eth ::</span> <span class="dt">ETH</span> <span class="fu">|</span> e) <span class="dt">Unit</span>)</code></pre></div>
 <ul>
 <li>this looks more complicated than it is.</li>
 </ul>
@@ -544,6 +583,13 @@ monitorCount this <span class="fu">=</span> void <span class="fu">$</span> <span
       _ <span class="ot">&lt;-</span> liftEff <span class="fu">&lt;&lt;&lt;</span> R.transformState this <span class="fu">$</span> _{currentCount<span class="fu">=</span> show cs<span class="fu">.</span>_count}
       pure <span class="dt">ContinueEvent</span></code></pre></div>
 </section>
+<section id="more-complicated-example" class="slide level1">
+<h1>More Complicated Example</h1>
+<ul>
+<li>ERC20 Token Monitor</li>
+<li>FOAM Spatial Index</li>
+</ul>
+</section>
 <section class="slide level1">
 
 <center>
@@ -554,7 +600,7 @@ Fin
 <hr />
 <ol>
 <li id="fn1"><p>What about gas?<a href="#/fnref1">↩</a></p></li>
-<li id="fn2"><p>There are a few other boiler plate type declarations, but this is pretty much it.<a href="#/fnref2">↩</a></p></li>
+<li id="fn2"><p>There are a few other boiler plate type declarations that are generated, but this is pretty much it.<a href="#/fnref2">↩</a></p></li>
 </ol>
 </section>
     </div>
@@ -568,6 +614,8 @@ Fin
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
+        // Transition style
+        transition: 'none', // none/fade/slide/convex/concave/zoom
 
         // Optional reveal.js plugins
         dependencies: [

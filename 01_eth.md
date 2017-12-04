@@ -1,7 +1,7 @@
-# Introduction to purescript-web3
-
-### Martin Allen, FOAM
-
+---
+author: Martin Allen
+title: Introdution to purescript-web3
+date: December 4, 2017
 ---
 
 # Plan of the talk
@@ -21,21 +21,15 @@
 
 ---
 
-![Ethereum transactions over time](images/txs.png)
-
-source: etherscan.io as of 12/2/2017
+![source: etherscan.io as of 12/2/2017](images/txs.png)
 
 ---
 
-![Unique transactions over time](images/addresses.png)
-
-source: etherscan.io as of 12/2/2017
+![source: etherscan.io as of 12/2/2017](images/addresses.png)
 
 ---
 
-![Ethereum market cap over time](images/marketcap.png)
-
-source: etherscan.io as of 12/2/2017
+![source: etherscan.io as of 12/2/2017](images/marketcap.png)
 
 ---
 
@@ -105,27 +99,21 @@ so for `GreedyStorage` we get
 ### Prevent catastrophes
 
 - Encoding errors
-  
 - Improper value transfer
-
 - Function/argument mismatch
 
-## Conveniences
+### Conveniences
 
 - Migrations / CD-CI
-
 - Type safety
-- 
----
-
-> The token sale kicked off on schedule at 4:00pm UTC. About 20 minutes in, we realized something was awry with the contract transfer address. Whilst generating the contract bytes for deployment, a mistake was made defining the constructor parameters. Instead of a quoted string for an address, a Javascript hex string was used, i.e: “0x03e4B00B607d09811b0Fa61Cf636a6460861939F”
-This resulted in an address in the byte code that looked very much like the actual address, but was not, i.e: “0x3e4b00b607d0980668ca6e50201576b00000000.” This address was incorrectly verified before deployment due to its similarities.
-
-REX token sale (7/31/2017)
 
 ---
 
-![100%](images/rex.png)
+![REX token sale 7/31/2017](images/rex1.png)
+
+---
+
+![Balance of invalid account](images/rex2.png)
 
 ---
 Subtle changes leading to broken application code
