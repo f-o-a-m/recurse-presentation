@@ -17,7 +17,7 @@
 - turing-complete[^0] statemachine (EVM)
 - allows consensus around execution of smart contracts
 
-[^0]: Gas solves the non-termination problem
+[^0]: What about gas?
 
 ---
 
@@ -49,17 +49,20 @@ source: etherscan.io as of 12/2/2017
 
 ```javascript
 contract GreedyStorage is owned {
+  
   uint public m; // automatically generate getM()
-  function increase (uint n) onlyOwner returns (uint) 
-  {
+  
+  event Overidden(address overrider)
+  
+  function increase (uint n) onlyOwner returns (uint) {
      m = m + n;
      return m;
   }
-  function override (uint n) payable 
-  {
+  
+  function override (uint n) payable {
     require(msg.value > 100000);  // this is the price
     m = n;
-    log0(bytes32(msg.sender));
+    Overidden(msg.sender);
   }
 }
 ```
@@ -68,11 +71,13 @@ contract GreedyStorage is owned {
 
 ---
 
-```haskell
-abi :: FunctionSignature -> ByteString
-abi = take 8 $ sha3
+The **selector** is how we speficy the function to execute
 
-> abi "increase(uint256)"
+```haskell
+selector :: FunctionSignature -> ByteString
+selector = take 8 $ sha3
+
+> selector "increase(uint256)"
 > "30f3f0db"
 ```
 
@@ -80,9 +85,9 @@ so for `GreedyStorage` we get
 
 ```json
 {
-    "30f3f0db": "increase(uint256)",
-    "5a2ee019": "m()",
-    "94d9e61c": "override(uint256)"
+    "increase(uint256)" : "30f3f0db",
+    "m()"               : "5a2ee019",
+    "override(uint256)" : "94d9e61c"
 }
 ```
 
@@ -91,16 +96,26 @@ so for `GreedyStorage` we get
 ## typesafety (on-chain)
 - work underway for strongly typed languages targeting EVM
 - typesafe EVM language wouldn't necessarily have prevented infamous bugs. We'd need session types or similar.
-- fundamental problem is `call()`-out from turingcomplete executable to turingcomplete executable. Types are not preserved on EVM.
+- fundamental problem is call-out from turingcomplete executable to turing complete executable. Type level information not preserved on EVM.
 
 ---
 
 ## typesafety (off-chain)
 
-Prevent catastrophes for
+### Prevent catastrophes
 
 - encoding errors
+  
+- improper value transfer
 
+- function/argument mismatch
+
+## Conveniences
+
+- migrations / CD-CI
+
+- type safety
+- 
 ---
 
 > The token sale kicked off on schedule at 4:00pm UTC. About 20 minutes in, we realized something was awry with the contract transfer address. Whilst generating the contract bytes for deployment, a mistake was made defining the constructor parameters. Instead of a quoted string for an address, a Javascript hex string was used, i.e: “0x03e4B00B607d09811b0Fa61Cf636a6460861939F”
@@ -113,42 +128,30 @@ REX token sale (7/31/2017)
 ![100%](images/rex.png)
 
 ---
-
-## typesafety (off-chain)
-
-Prevent catastrophes for
-
-- encoding errors
-- migrations
-
----
+Subtle changes leading to broken application code
 
 ```javascript
 contract A {
+  
   uint n;
+  
   function A (uint _arg) {
     n = _arg;
   }
+  
 }
 ```
-
----
 
 ```javascript
 contract A {
+
   int n;
+  
   function A (int _arg) {
     n = _arg;
   }
+  
 }
 ```
-
----
-
-## typesafety (off-chain)
-Convenience
-
-- CD/CI
-- compile time errors
 
 ---
