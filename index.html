@@ -69,20 +69,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3 id="martin-allen-foam">Martin Allen, FOAM</h3>
 </section>
 <section id="plan-of-the-talk" class="slide level1">
-<h1>plan of the talk</h1>
+<h1>Plan of the talk</h1>
 <ul>
-<li>ethereum</li>
-<li>purescript</li>
+<li>Ethereum</li>
+<li>Purescript</li>
 <li>purescript-web3</li>
 </ul>
 </section>
 <section class="slide level1">
 
-<h2 id="ethereum">ethereum</h2>
+<h2 id="ethereum">Ethereum</h2>
 <ul>
-<li>second most popupular blockchain and cryptocurrency</li>
-<li>turing-complete<a href="#/fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> statemachine (EVM)</li>
-<li>allows consensus around execution of smart contracts</li>
+<li>Second most popupular blockchain and cryptocurrency</li>
+<li>Turing-complete<a href="#/fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> statemachine (EVM)</li>
+<li>Allows consensus around execution of smart contracts</li>
 </ul>
 </section>
 <section class="slide level1">
@@ -108,65 +108,74 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </section>
 <section class="slide level1">
 
-<h2 id="solidity">solidity</h2>
+<h2 id="solidity">Solidity</h2>
 <ul>
-<li>javascript like syntax</li>
-<li>special blockchain, crypto and signature-recovery primitives</li>
-<li>types for EVM primitives such as <code>uint48</code></li>
-<li>interface through <code>ABI</code></li>
+<li>Javascript like syntax</li>
+<li>Special blockchain, crypto and signature-recovery primitives</li>
+<li>Types for EVM primitives such as <code>uint48</code></li>
+<li>Interface through <code>ABI</code></li>
 </ul>
 </section>
 <section class="slide level1">
 
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">contract GreedyStorage is owned <span class="op">{</span>
+  
   uint <span class="kw">public</span> m<span class="op">;</span> <span class="co">// automatically generate getM()</span>
-  <span class="kw">function</span> <span class="at">increase</span> (uint n) onlyOwner <span class="at">returns</span> (uint) 
-  <span class="op">{</span>
+  
+  event <span class="at">Overidden</span>(address overrider)
+  
+  <span class="kw">function</span> <span class="at">increase</span> (uint n) onlyOwner <span class="at">returns</span> (uint) <span class="op">{</span>
      m <span class="op">=</span> m <span class="op">+</span> n<span class="op">;</span>
      <span class="cf">return</span> m<span class="op">;</span>
   <span class="op">}</span>
-  <span class="kw">function</span> <span class="at">override</span> (uint n) payable 
-  <span class="op">{</span>
+  
+  <span class="kw">function</span> <span class="at">override</span> (uint n) payable <span class="op">{</span>
     <span class="at">require</span>(<span class="va">msg</span>.<span class="at">value</span> <span class="op">&gt;</span> <span class="dv">100000</span>)<span class="op">;</span>  <span class="co">// this is the price</span>
     m <span class="op">=</span> n<span class="op">;</span>
-    <span class="at">log0</span>(<span class="at">bytes32</span>(<span class="va">msg</span>.<span class="at">sender</span>))<span class="op">;</span>
+    <span class="at">Overidden</span>(<span class="va">msg</span>.<span class="at">sender</span>)<span class="op">;</span>
   <span class="op">}</span>
 <span class="op">}</span></code></pre></div>
 <p><a href="https://ethereum.github.io/browser-solidity/#version=soljson-v0.4.19+commit.c4cbbb05.js&amp;optimize=undefined&amp;gist=a90b20b6df66c98f7af2f912952d2b7d">edit on remix</a></p>
 </section>
 <section class="slide level1">
 
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">abi ::</span> <span class="dt">FunctionSignature</span> <span class="ot">-&gt;</span> <span class="dt">ByteString</span>
-abi <span class="fu">=</span> take <span class="dv">8</span> <span class="fu">$</span> sha3
+<p>The <strong>selector</strong> is how we speficy the function to execute</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">selector ::</span> <span class="dt">FunctionSignature</span> <span class="ot">-&gt;</span> <span class="dt">ByteString</span>
+selector <span class="fu">=</span> take <span class="dv">8</span> <span class="fu">$</span> sha3
 
-<span class="fu">&gt;</span> abi <span class="st">&quot;increase(uint256)&quot;</span>
+<span class="fu">&gt;</span> selector <span class="st">&quot;increase(uint256)&quot;</span>
 <span class="fu">&gt;</span> <span class="st">&quot;30f3f0db&quot;</span></code></pre></div>
 <p>so for <code>GreedyStorage</code> we get</p>
 <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
-    <span class="dt">&quot;30f3f0db&quot;</span><span class="fu">:</span> <span class="st">&quot;increase(uint256)&quot;</span><span class="fu">,</span>
-    <span class="dt">&quot;5a2ee019&quot;</span><span class="fu">:</span> <span class="st">&quot;m()&quot;</span><span class="fu">,</span>
-    <span class="dt">&quot;94d9e61c&quot;</span><span class="fu">:</span> <span class="st">&quot;override(uint256)&quot;</span>
+    <span class="dt">&quot;increase(uint256)&quot;</span> <span class="fu">:</span> <span class="st">&quot;30f3f0db&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;m()&quot;</span>               <span class="fu">:</span> <span class="st">&quot;5a2ee019&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;override(uint256)&quot;</span> <span class="fu">:</span> <span class="st">&quot;94d9e61c&quot;</span>
 <span class="fu">}</span></code></pre></div>
 </section>
 <section class="slide level1">
 
-<h2 id="typesafety-on-chain">typesafety (on-chain)</h2>
+<h2 id="typesafety-on-chain">Typesafety (on-chain)</h2>
 <ul>
-<li>work underway for strongly typed languages targeting EVM</li>
-<li>typesafe EVM language wouldn't necessarily have prevented infamous bugs. We'd need session types or similar.</li>
-<li>fundamental problem is <code>call()</code>-out from turingcomplete executable to turingcomplete executable. Types are not preserved on EVM.</li>
+<li>Work underway for strongly typed languages targeting EVM</li>
+<li>Typesafe EVM language wouldn't necessarily have prevented infamous bugs. We'd need session types or similar.</li>
+<li>Fundamental problem is call-out from turingcomplete executable to turing complete executable. Type level information not preserved on EVM.</li>
 </ul>
 </section>
 <section class="slide level1">
 
-<h2 id="typesafety-off-chain">typesafety (off-chain)</h2>
-<p>Prevent catastrophes for</p>
+<h2 id="typesafety-off-chain">Typesafety (off-chain)</h2>
+<h3 id="prevent-catastrophes">Prevent catastrophes</h3>
 <ul>
-<li>encoding errors</li>
+<li><p>Encoding errors</p></li>
+<li><p>Improper value transfer</p></li>
+<li><p>Function/argument mismatch</p></li>
 </ul>
-</section>
-<section class="slide level1">
-
+<h2 id="conveniences">Conveniences</h2>
+<ul>
+<li><p>Migrations / CD-CI</p></li>
+<li>Type safety</li>
+<li><hr /></li>
+</ul>
 <blockquote>
 <p>The token sale kicked off on schedule at 4:00pm UTC. About 20 minutes in, we realized something was awry with the contract transfer address. Whilst generating the contract bytes for deployment, a mistake was made defining the constructor parameters. Instead of a quoted string for an address, a Javascript hex string was used, i.e: “0x03e4B00B607d09811b0Fa61Cf636a6460861939F” This resulted in an address in the byte code that looked very much like the actual address, but was not, i.e: “0x3e4b00b607d0980668ca6e50201576b00000000.” This address was incorrectly verified before deployment due to its similarities.</p>
 </blockquote>
@@ -178,52 +187,20 @@ abi <span class="fu">=</span> take <span class="dv">8</span> <span class="fu">$<
 <img src="images/rex.png" alt="100%" /><figcaption>100%</figcaption>
 </figure>
 </section>
-<section class="slide level1">
-
-<h2 id="typesafety-off-chain-1">typesafety (off-chain)</h2>
-<p>Prevent catastrophes for</p>
-<ul>
-<li>encoding errors</li>
-<li>migrations</li>
-</ul>
-</section>
-<section class="slide level1">
-
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">contract A <span class="op">{</span>
-  uint n<span class="op">;</span>
-  <span class="kw">function</span> <span class="at">A</span> (uint _arg) <span class="op">{</span>
-    n <span class="op">=</span> _arg<span class="op">;</span>
-  <span class="op">}</span>
-<span class="op">}</span></code></pre></div>
-</section>
-<section class="slide level1">
-
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">contract A <span class="op">{</span>
-  int n<span class="op">;</span>
-  <span class="kw">function</span> <span class="at">A</span> (int _arg) <span class="op">{</span>
-    n <span class="op">=</span> _arg<span class="op">;</span>
-  <span class="op">}</span>
-<span class="op">}</span></code></pre></div>
-</section>
-<section class="slide level1">
-
-<h2 id="typesafety-off-chain-2">typesafety (off-chain)</h2>
-<p>Convenience</p>
-<ul>
-<li>CD/CI</li>
-<li>compile time errors</li>
-</ul>
-</section>
 <section id="purescript" class="slide level1">
-<h1>purescript</h1>
+<h1>Purescript</h1>
+<blockquote>
+<p>I started PureScript because the language I wanted on the front end didn't exist, and that's still why I work on it and use it. I want type classes, and functional dependencies, and higher kinded types, and rank N types, and various other things in my type system. And I want predictable code generation, and a minimal language and standard library. That combination just didn't exist when I started on PureScript. <span class="citation" data-cites="paf31">@paf31</span></p>
+</blockquote>
 </section>
 <section class="slide level1">
 
-<h2 id="a-haskell-programmers-solution-to-the-javascript-problem">a haskell programmer's solution to the javascript problem</h2>
+<h2 id="a-haskell-programmers-solution-to-the-javascript-problem">A haskell programmer's solution to the javascript problem</h2>
 <ul>
-<li>product, coproduct (sum) and record-types</li>
-<li>GADTs, prism/lens/traversals</li>
-<li>RowTypes...</li>
+<li>Algebraic datatypes (sums of products), row types (records)</li>
+<li>Type classes (functor, monad, foldable, etc) and constraints</li>
+<li>Pure, extensible effects (may go away)</li>
+<li>Prism/Lens/Traversable</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">MyProd</span> <span class="fu">=</span> <span class="dt">MyProd</span> <span class="dt">Int</span> <span class="dt">String</span>
 
@@ -240,19 +217,19 @@ abi <span class="fu">=</span> take <span class="dv">8</span> <span class="fu">$<
 </section>
 <section class="slide level1">
 
-<h2 id="a-haskell-programmers-solution-to-the-javascript-problem-1">a haskell programmer's solution to the javascript problem</h2>
+<h2 id="a-haskell-programmers-solution-to-the-javascript-problem-1">A haskell programmer's solution to the javascript problem</h2>
 <ul>
-<li>compiles to clean JS code</li>
-<li>doesn't yet optimize</li>
-<li>easy FFI</li>
+<li>Compiles to clean (human readable) JS code</li>
+<li>Easy FFI, use existing js libraries whenever makes sense</li>
+<li>Doesn't yet optimize</li>
 </ul>
 </section>
 <section class="slide level1">
 
-<h2 id="comparison-with">comparison with</h2>
+<h2 id="comparison-with">Comparison with</h2>
 <ul>
-<li>elm</li>
-<li>ghcjs</li>
+<li><p><code>elm</code> <em>-</em> Functional, row types <em>-</em> Arguably easier to get started <em>-</em> Weaker type system (effects, polymorphism, typeclasses)</p></li>
+<li><p><code>ghcjs</code> <em>-</em> Make use of existing haskell ecosystem <em>-</em> Laziness, garbage collection, shared code <em>-</em> Heavy (needs runtime) --- ---</p></li>
 </ul>
 </section>
 <section id="purescript-web3" class="slide level1">
@@ -576,7 +553,7 @@ Fin
 <section class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Gas solves the non-termination problem<a href="#/fnref1">↩</a></p></li>
+<li id="fn1"><p>What about gas?<a href="#/fnref1">↩</a></p></li>
 <li id="fn2"><p>There are a few other boiler plate type declarations, but this is pretty much it.<a href="#/fnref2">↩</a></p></li>
 </ol>
 </section>

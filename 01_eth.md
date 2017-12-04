@@ -4,18 +4,18 @@
 
 ---
 
-# plan of the talk
+# Plan of the talk
 
-* ethereum
-* purescript
+* Ethereum
+* Purescript
 * purescript-web3
 
 ---
 
-## ethereum
-- second most popupular blockchain and cryptocurrency
-- turing-complete[^0] statemachine (EVM)
-- allows consensus around execution of smart contracts
+## Ethereum
+- Second most popupular blockchain and cryptocurrency
+- Turing-complete[^0] statemachine (EVM)
+- Allows consensus around execution of smart contracts
 
 [^0]: What about gas?
 
@@ -39,11 +39,11 @@ source: etherscan.io as of 12/2/2017
 
 ---
 
-## solidity
-- javascript like syntax
-- special blockchain, crypto and signature-recovery primitives
-- types for EVM primitives such as `uint48`
-- interface through `ABI`
+## Solidity
+- Javascript like syntax
+- Special blockchain, crypto and signature-recovery primitives
+- Types for EVM primitives such as `uint48`
+- Interface through `ABI`
 
 ---
 
@@ -93,28 +93,28 @@ so for `GreedyStorage` we get
 
 ---
 
-## typesafety (on-chain)
-- work underway for strongly typed languages targeting EVM
-- typesafe EVM language wouldn't necessarily have prevented infamous bugs. We'd need session types or similar.
-- fundamental problem is call-out from turingcomplete executable to turing complete executable. Type level information not preserved on EVM.
+## Typesafety (on-chain)
+- Work underway for strongly typed languages targeting EVM
+- Typesafe EVM language wouldn't necessarily have prevented infamous bugs. We'd need session types or similar.
+- Fundamental problem is call-out from turingcomplete executable to turing complete executable. Type level information not preserved on EVM.
 
 ---
 
-## typesafety (off-chain)
+## Typesafety (off-chain)
 
 ### Prevent catastrophes
 
-- encoding errors
+- Encoding errors
   
-- improper value transfer
+- Improper value transfer
 
-- function/argument mismatch
+- Function/argument mismatch
 
 ## Conveniences
 
-- migrations / CD-CI
+- Migrations / CD-CI
 
-- type safety
+- Type safety
 - 
 ---
 
