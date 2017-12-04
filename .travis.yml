@@ -1,8 +1,4 @@
 language: r
-# sudo: required
-
-env:
-- THEME=simple
 
 install:
   make pandoc
