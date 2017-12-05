@@ -4,7 +4,7 @@
 
 ## View the presentation
 
-[here](https://f-o-a-m.github.io/purescript-web3-presentation/)
+[here](https://cdn.rawgit.com/f-o-a-m/purescript-web3-presentation/gh-pages/index.html)
 
 ## How to build
 
