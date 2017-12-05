@@ -6,7 +6,7 @@
 
 [here](https://f-o-a-m.github.io/purescript-web3-presentation/)
 
-## To build
+## How to build
 
 If you don't have `pandoc` installed, run
 
