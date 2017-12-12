@@ -1,6 +1,6 @@
 ---
 author: Martin Allen
-title: Introdution to purescript-web3
+title: Introduction to purescript-web3
 date: December 4, 2017
 ---
 
