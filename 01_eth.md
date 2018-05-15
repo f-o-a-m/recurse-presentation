@@ -1,18 +1,13 @@
 ---
-author: Martin Allen
+author: Martin Allen, FOAM
 title: Introduction to purescript-web3
 date: December 4, 2017
 ---
 
-# Plan of the talk
+# ethereum
 
-* Ethereum
-* Purescript
-* purescript-web3
+## What is it
 
----
-
-## Ethereum
 - Second most popupular blockchain and cryptocurrency
 - Turing-complete[^0] statemachine (EVM)
 - Allows consensus around execution of smart contracts
@@ -34,6 +29,7 @@ date: December 4, 2017
 ---
 
 ## Solidity
+
 - Javascript like syntax
 - Special blockchain, crypto and signature-recovery primitives
 - Types for EVM primitives such as `uint48`
@@ -43,16 +39,12 @@ date: December 4, 2017
 
 ```javascript
 contract GreedyStorage is owned {
-  
   uint public m; // automatically generate getM()
-  
   event Overidden(address overrider)
-  
   function increase (uint n) onlyOwner returns (uint) {
      m = m + n;
      return m;
   }
-  
   function override (uint n) payable {
     require(msg.value > 100000);  // this is the price
     m = n;
@@ -102,6 +94,8 @@ so for `GreedyStorage` we get
 - Improper value transfer
 - Function/argument mismatch
 
+---
+
 ### Conveniences
 
 - Migrations / CD-CI
@@ -116,30 +110,23 @@ so for `GreedyStorage` we get
 ![Balance of invalid account](images/rex2.png)
 
 ---
+
 Subtle changes leading to broken application code
 
 ```javascript
 contract A {
-  
   uint n;
-  
   function A (uint _arg) {
     n = _arg;
   }
-  
 }
 ```
 
 ```javascript
 contract A {
-
   int n;
-  
   function A (int _arg) {
     n = _arg;
   }
-  
 }
 ```
-
----
