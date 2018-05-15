@@ -4,7 +4,7 @@
 
 ## View the presentation
 
-[here](https://cdn.rawgit.com/f-o-a-m/recurse-center/gh-pages/index.html)
+[here](https://cdn.rawgit.com/f-o-a-m/recurse-presentation/gh-pages/index.html)
 
 ## How to build
 
