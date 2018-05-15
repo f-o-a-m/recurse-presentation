@@ -1,10 +1,10 @@
-# purescript-web3-presentation
+# recurse-center presentation
 
-[![Build status](https://travis-ci.org/f-o-a-m/purescript-web3-presentation.svg?branch=master)](https://travis-ci.org/f-o-a-m/purescript-web3-presentation?branch=master)
+[![Build status](https://travis-ci.org/f-o-a-m/recurse-presentation.svg?branch=master)](https://travis-ci.org/f-o-a-m/recurse-presentation?branch=master)
 
 ## View the presentation
 
-[here](https://cdn.rawgit.com/f-o-a-m/purescript-web3-presentation/gh-pages/index.html)
+[here](https://cdn.rawgit.com/f-o-a-m/recurse-center/gh-pages/index.html)
 
 ## How to build
 

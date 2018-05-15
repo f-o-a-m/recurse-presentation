@@ -1,7 +1,7 @@
 ---
 author: Martin Allen, FOAM
-title: Introduction to purescript-web3
-date: December 4, 2017
+title: purescript and web3 etc
+date: May 17, 2018
 ---
 
 # ethereum
