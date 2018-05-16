@@ -1,10 +1,10 @@
 ---
 author: Martin Allen, FOAM
-title: purescript and web3 etc
+title: Functional Ethereum
 date: May 17, 2018
 ---
 
-# ethereum
+# Ethereum
 
 ## What is it
 
@@ -16,15 +16,15 @@ date: May 17, 2018
 
 ---
 
-![source: etherscan.io as of 12/2/2017](images/txs.png)
+![source: etherscan.io as of 05/16/2018](images/txs.png)
 
 ---
 
-![source: etherscan.io as of 12/2/2017](images/addresses.png)
+![source: etherscan.io as of 05/16/2018](images/addresses.png)
 
 ---
 
-![source: etherscan.io as of 12/2/2017](images/marketcap.png)
+![source: etherscan.io as of 05/16/2018](images/marketcap.png)
 
 ---
 
