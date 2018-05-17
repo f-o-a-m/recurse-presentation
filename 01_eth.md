@@ -4,7 +4,7 @@ title: Functional Ethereum
 date: May 17, 2018
 ---
 
-# Ethereum
+# Ethereum ... and Cats
 
 ---
 
