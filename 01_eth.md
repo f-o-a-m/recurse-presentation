@@ -10,10 +10,11 @@ date: May 17, 2018
 
 ## Cryptokitties, what are they?
 
-![source: https://www.cryptokitties.co/marketplace](images/crypto-kitties-marketplace.png)
-
-
-Like crypto-tamagotchi. Check out the [marketplace](https://www.cryptokitties.co/marketplace)
+<center>
+<a href="source: https://www.cryptokitties.co/marketplace">
+<img src="images/crypto-kitties-marketplace.png" height="450">
+</a>
+</center>
 
 ---
 
@@ -21,7 +22,12 @@ Like crypto-tamagotchi. Check out the [marketplace](https://www.cryptokitties.co
 
 Turns out over 12 million dollars!
 
-![source: http://www.kittyexplorer.com/stats/](images/crypto-kitties.png)
+<center>
+<a href="source: http://www.kittyexplorer.com/stats/">
+<img src="images/crypto-kitties.png" height="350">
+</a>
+</center>
+
 
 ---
 
@@ -30,7 +36,12 @@ Turns out over 12 million dollars!
 - Second highest cryptocurrency market cap
 - Doesn't inlcude the sum of the value of tokens
 
-![source: etherscan.io as of 05/16/2018](images/marketcap.png)
+<center>
+<a href="source: https://etherscan.io/chart/marketcap">
+<img src="images/marketcap.png" height="450">
+</a>
+</center>
+
 
 ---
 
@@ -39,5 +50,8 @@ Turns out over 12 million dollars!
 - Monitor the sales in real time with the [kitty-monitor](https://github.com/f-o-a-m/purescript-kitty-monitor)
 - Backed by purescript-web3
 
-
-![source: kitty monitor](images/kitty-monitor.png)
+<center>
+<a href="source: https://github.com/f-o-a-m/purescript-kitty-monitor">
+<img src="images/kitty-monitor.png" height="450">
+</a>
+</center>
