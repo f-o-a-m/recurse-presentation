@@ -19,7 +19,7 @@ Like crypto-tamagotchi. Check out the [marketplace](https://www.cryptokitties.co
 
 ## What are they worth?
 
-Turns out over 21 million dollars!
+Turns out over 12 million dollars!
 
 ![source: http://www.kittyexplorer.com/stats/](images/crypto-kitties.png)
 
