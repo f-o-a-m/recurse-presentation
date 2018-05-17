@@ -11,8 +11,8 @@ date: May 17, 2018
 ## Cryptokitties, what are they?
 
 <center>
-<a href="source: https://www.cryptokitties.co/marketplace">
-<img src="images/crypto-kitties-marketplace.png" height="450">
+<a href="https://www.cryptokitties.co/marketplace">
+<img src="images/crypto-kitties-marketplace.png" height="400">
 </a>
 </center>
 
@@ -23,7 +23,7 @@ date: May 17, 2018
 Turns out over 12 million dollars!
 
 <center>
-<a href="source: http://www.kittyexplorer.com/stats/">
+<a href="http://www.kittyexplorer.com/stats/">
 <img src="images/crypto-kitties.png" height="350">
 </a>
 </center>
@@ -37,8 +37,8 @@ Turns out over 12 million dollars!
 - Doesn't inlcude the sum of the value of tokens
 
 <center>
-<a href="source: https://etherscan.io/chart/marketcap">
-<img src="images/marketcap.png" height="450">
+<a href="https://etherscan.io/chart/marketcap">
+<img src="images/marketcap.png" height="400">
 </a>
 </center>
 
@@ -51,7 +51,7 @@ Turns out over 12 million dollars!
 - Backed by purescript-web3
 
 <center>
-<a href="source: https://github.com/f-o-a-m/purescript-kitty-monitor">
-<img src="images/kitty-monitor.png" height="450">
+<a href="https://github.com/f-o-a-m/purescript-kitty-monitor">
+<img src="images/kitty-monitor.png" height="400">
 </a>
 </center>
