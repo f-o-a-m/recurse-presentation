@@ -4,7 +4,7 @@
 
 ## View the presentation
 
-[here](https://f-o-a-m.github.io/recurse-presentation/)
+[https://f-o-a-m.github.io/recurse-presentation/](https://f-o-a-m.github.io/recurse-presentation/)
 
 ## How to build
 
